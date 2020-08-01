@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[测试]]></title>
+    <url>%2F2020%2F08%2F01%2FAndroid%2F%E6%B5%8B%E8%AF%95%2F</url>
+    <content type="text"><![CDATA[测试]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CentOS 7.6修改ssh端口]]></title>
     <url>%2F2020%2F05%2F19%2FService%2FCentOS-7-6%E4%BF%AE%E6%94%B9ssh%E7%AB%AF%E5%8F%A3%2F</url>
     <content type="text"><![CDATA[在CentOS 7.6下修改ssh端口 1. 修改/etc/ssh/sshd_config ，如下修改端口号 Port 12345 关闭远程root登陆 PermitEmptyPasswords no 2. 重启ssh服务 sudo systemctl restart sshd 3. 防火墙端口查看查看对应端口防火墙是否设置，没设置提示no，反之yes sudo firewall-cmd –permanent –query-port=12345/tcp 添加新端口到防火墙 sudo firewall-cmd –permanent –add-port=12345/tcp 重启防火墙，提示success表示成功 sudo firewall-cmd –reload]]></content>

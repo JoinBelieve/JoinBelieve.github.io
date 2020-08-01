@@ -82,7 +82,7 @@
 <meta name="description" content="top top">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Dan&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/system/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/测试/index.html">
 <meta property="og:site_name" content="Dan&#39;s Blog">
 <meta property="og:description" content="top top">
 <meta property="og:locale" content="zh-Hans">
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/system/">
+  <link rel="canonical" href="http://yoursite.com/tags/测试/">
 
 
 
 
 
-  <title>分类: system | Dan's Blog</title>
+  <title>标签: 测试 | Dan's Blog</title>
   
 
 
@@ -272,11 +272,11 @@
   
   
   
-  <div class="post-block category">
+  <div class="post-block tag">
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>system<small>分类</small>
+        <h1>测试<small>标签</small>
         </h1>
       </div>
 
@@ -288,17 +288,17 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2018/12/17/System/远程连接/" itemprop="url">
+            <a class="post-title-link" href="/2020/08/01/Android/测试/" itemprop="url">
               
-                <span itemprop="name">'如何进行远程连接'</span>
+                <span itemprop="name">测试</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-17T14:05:00+08:00" content="2018-12-17">
-          12-17
+        <time class="post-time" itemprop="dateCreated" datetime="2020-08-01T23:20:02+08:00" content="2020-08-01">
+          08-01
         </time>
       </div>
 
@@ -315,7 +315,6 @@
   
 
   
-
 
 
           </div>
@@ -951,99 +950,6 @@
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-nd(COUNT_CONTAINER_REF).text(time);
           }
           for(var i = 0; i < entries.length; i++) {
             var url = entries[i];
