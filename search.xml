@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[CentOS 7.6修改ssh端口]]></title>
+    <url>%2F2020%2F05%2F19%2FService%2FCentOS-7-6%E4%BF%AE%E6%94%B9ssh%E7%AB%AF%E5%8F%A3%2F</url>
+    <content type="text"><![CDATA[在CentOS 7.6下修改ssh端口 1. 修改/etc/ssh/sshd_config ，如下修改端口号 Port 12345 关闭远程root登陆 PermitEmptyPasswords no 2. 重启ssh服务 sudo systemctl restart sshd 3. 防火墙端口查看查看对应端口防火墙是否设置，没设置提示no，反之yes sudo firewall-cmd –permanent –query-port=12345/tcp 添加新端口到防火墙 sudo firewall-cmd –permanent –add-port=12345/tcp 重启防火墙，提示success表示成功 sudo firewall-cmd –reload]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Jetpack-WorkManager]]></title>
+    <url>%2F2020%2F05%2F16%2FAndroid%2FJetpack-WorkManager%2F</url>
+    <content type="text"><![CDATA[Android Jetpack之WorkManager认识 简介 Android上有许多延期的后台工作选项。这是一个可以延迟的后台工作的兼容，灵活且简单的库。 什么是WorkManager WorkManager是Android Jetpack的一部分，是用于后台工作的架构组件。有保证的执行意味着即使在离开应用程序的情况下，WorkManager也会照顾在各个情况下开始工作的逻辑。 WorkManager的优点如下： 支持异步一次性任务和定期任务 支持网络条件，存储空间和充电状态等约束 链接复杂的工作请求，包括并行运行工作。 一个工作请求的输出用作下一个工作的输入？ API兼容到了14 可以使用或者不适应GooglePlay服务 遵循系统健康最佳实践 LiveData支持可轻松在UI中显示工作请求状态 何时使用WorkManager 即使用户离开特定屏幕或你的应用程序，WorkManager库对完成有用的任务也是不错的选择。 可以很好地使用WorkManager的一些任务示例： 上传日志 将过滤器应用于图像并且保存图像 定期将本地数据于网络同步]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ubuntu1404用pyenv管理python版本]]></title>
+    <url>%2F2020%2F04%2F13%2FService%2Fubuntu1404%E7%94%A8pyenv%E7%AE%A1%E7%90%86python%E7%89%88%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[ubuntu1404 安装 pyenv 管理python版本 开源地址：https://github.com/pyenv/pyenv 不同系统参考 Common build problems 安装之前的必备工具手动安装pyenv 1234567&gt; git clone https://github.com/pyenv/pyenv.git ~/.pyenv&gt; echo &apos;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&apos; &gt;&gt; ~/.bashrc&gt; echo &apos;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&apos; &gt;&gt; ~/.bashrc&gt; echo &apos;eval &quot;$(pyenv init -)&quot;&apos; &gt;&gt; ~/.bashrc&gt; source ~/.bashrc&gt; exec &quot;$SHELL&quot; //重启终端&gt; 查看可安装Python版本 pyenv install -l 安装/卸载python pyenv install -v 3.7.2 pyenv uninstall 3.7.2 python切换 pyenv global 3.7.2 pyenv local 3.7.2 # 设置Python本地版本 遇到问题： ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib pyenv Wiki中的解决方法 安装openssl curl: (60) SSL certificate problem: unable to get local issuer certificate 参考资料 http://einverne.github.io/post/2017/04/pyenv.html]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ubuntu1404安装python3.8]]></title>
+    <url>%2F2020%2F04%2F13%2FService%2Fubuntu1404%E5%AE%89%E8%A3%85python3.8%2F</url>
+    <content type="text"><![CDATA[ubuntu1404 install python3.8 下载解压： wget https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz tar -zxvf Python-3.8.2.tgz 编译 cd Python3.8.2 ./configure sudo make sudo make install 更换ubuntu Python版本 添加 sudo update-alternatives –install /usr/bin/python python /usr/bin/python3.8 3 显示列表 sudo update-alternatives –config python 移除 sudo update-alternatives –remove python /usr/bin/python3]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu1404 AMD64编译Android4.0.1源码]]></title>
+    <url>%2F2020%2F04%2F13%2FAndroid%2FUbuntu1404-AMD64%E7%BC%96%E8%AF%91Android4-0-1%E6%BA%90%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[ubuntu 1404 AMD64 下载编译Android4.0 安装 搭建编译环境：需要的软件包 下载repo参考 123456789&gt; mkdir ~/bin&gt; PATH=~/bin:$PATH&gt; cd ~/bin&gt; curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o repo&gt; chmod +x repo&gt; # 配置repo更新，使用tuna镜像源更新，将下面内容复制到~/.bashrc里&gt; export REPO_URL=&apos;https://mirrors.tuna.tsinghua.edu.cn/git/git-repo&apos;&gt; source ~/.bashrc&gt; 安装JDK1.6参考 下载：https://www.oracle.com/java/technologies/javase-java-archive-javase6-downloads.html ，我下的是：jdk-6u45-linux-x64.bin，将它复制到/usr/java，改为可执行，执行安装，添加到PATH环境，具体操作如下： mkdir /usr/java cp ~/Downloads/jdk-6u45-linux-x64.bin /usr/java cd /usr/java chmod +x jdk-6u45-linux-x64.bin ./jdk-6u45-linux-x64.bin sudo rm -rf jdk-6u45-linux-x64.bin #配置环境 sudo vim ~/.bashrc export ANDROID_JAVA_HOME=’/usr/java/jdk1.6.0_45’export PATH=”$ANDROID_JAVA_HOME/bin:$PATH”export CLASSPATH=”$ANDROID_JAVA_HOME/lib/dt.jar:$ANDROID_JAVA_HOME/lib/tools.jar” source ~/.bashrc 同步源码 mkdir AndroidResource cd AndroidResource repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-4.0.1_r1 repo sync 编译源码（过程会有一些错，在文章的最底部） source build/envsetup.sh ./build/envsetup.sh m 编译SDK（过程会有一些错，在文章的最底部） m sdk 运行 设置环境变量 export PATH=”~/AndroidResource/out/host/linux-x86/bin:$PATH”export ANDROID_PRODUCT_OUT=~/AndroidResource/out/target/product/generic 其中~/AndroidResource/out/host/linux-x86/bin中有emulator指令，~/AndroidResource/out/target/product/generic有Android镜像 将编译的Android镜像运行到emulator上 emulator-arm //或 emulator 编译Android源码遇到的错误 error: sys/cdefs.h: No such file or directory sudo apt-get install libc6-dev-i386 在安装JDK6之后，还是找不到jdk6 打开/build/core/find-jdk-tools-jar.sh可以发现，缺少$ANDROID_JAVA_HOME，把~/.bashrc 中的JAVA_HOME改成ANDROID_JAVA_HOME 修改权限存放Android源码的目录：sudo chmod 755 -R ~/AndroidResource/ not found bits/c++config.h，参考 sudo apt-get install gcc-4.8-multilib g++-4.8-multilib [out/host/linux-x86/obj/EXECUTABLES/aapt_intermediates/AaptAssets.o] Error 1 在/frameworks/base/tools/aapt/Android.mk 第31行处改为 LOCAL_CFLAGS += -Wno-format-y2k -fpermissive [out/host/linux-x86/obj/STATIC_LIBRARIES/libutils_intermediates/AssetManager.o] Error 1 在/frameworks/base/libs/utils/Android.mk 第64行 改为 LOCAL_CFLAGS += -DLIBUTILS_NATIVE=1 $(TOOL_CFLAGS) -fpermissive [out/host/linux-x86/obj/EXECUTABLES/grxmlcompile_intermediates/grxmlcompile.o] Error 1 wget “https://github.com/CyanogenMod/android_external_srec/commit/4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff&quot; patch -p1 &lt; 4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff rm -f 4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff cd ../.. [out/host/linux-x86/obj/SHARED_LIBRARIES/libdvm_intermediates/native/dalvik_system_Zygote.o] Error 1 添加 #include &lt;sys/resource.h&gt; 到 dalvik/vm/native/dalvik_system_Zygote.cpp 中 [out/host/linux-x86/obj/EXECUTABLES/emugen_intermediates/main.o] Error 1 在 development/tools/emulator/opengl/host/tools/emugen/main.cpp 中添加 #include &lt;getopt.h&gt; [out/host/linux-x86/obj/STATIC_LIBRARIES/libOpenglCodecCommon_intermediates/GLSharedGroup.o] Error 1 在 development/tools/emulator/opengl/Android.mk 第25行 改为 EMUGL_COMMON_CFLAGS := -DWITH_GLES2 -fpermissive [out/host/linux-x86/obj/lib/libOpenglRender.so] Error 1 sudo apt-get install libx11-dev:i386 [out/host/linux-x86/obj/EXECUTABLES/emulator_renderer_intermediates/emulator_renderer] Error 1 在 development/tools/emulator/opengl/host/renderer/Android.mk 新增一行 LOCAL_LDLIBS += -lX11，如下： 123LOCAL_SRC_FILES := main.cppLOCAL_CFLAGS += -O0 -gLOCAL_LDLIBS += -lX11 /usr/include/zlib.h:34:19: fatal error: zconf.h: No such file or directory -&gt; #include “zconf.h” 在usr/include中没有找到zconf.h，由于zlib1g-dev的路径改变，才找不到。解决办法：将新路径的zconf.h拷贝到usr/include目录下，如下： sudo cp /usr/include/x86_64-linux-gnu/zconf.h /usr/include/ [out/host/linux-x86/obj/EXECUTABLES/obbtool_intermediates/Main.o] Error 1 将/build/core/combo/HOST_linux-x86.mk 中的 HOST_GLOBAL_CFLAGS += -D_FORTIFY_SOURCE=0 修改为 HOST_GLOBAL_CFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0 [out/host/linux-x86/obj/lib/libGLES_CM_translator.so] Error 1 如果在/usr/lib/i386-linux-gnu/中没有发现mesa文件夹，安装（参考） sudo apt-get install libc6:i386sudo apt-get install libgl1-mesa-glx-lts-trusty:i386 有的话，执行（libGL.so.1查看自己的版本） sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/libGL.so [out/host/linux-x86/obj/EXECUTABLES/llvm-rs-cc_intermediates/slang_rs.o] Error 1 将frameworks/compile/slang/Android.mk第21行local_cflags_for_slang := -Wno-sign-promo -Wall -Wno-unused-parameter注释掉 [out/host/linux-x86/obj/STATIC_LIBRARIES/libLLVMJIT_intermediates/Intercept.o] Error 1 在external/llvm/lib/ExecutionEngine/JIT/Intercept.cpp中添加 #define _LARGEFILE64_SOURCE#include &lt;stdlib.h&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;unistd.h&gt;#include &lt;sys/types.h&gt;#include &lt;sys/stat.h&gt;#include &lt;fcntl.h&gt;#include &lt;errno.h&gt; [out/target/product/generic/obj/STATIC_LIBRARIES/libwebcore_intermediates/Source/WebCore/html/DocTypeStrings.cpp] Error 2 sudo apt-get install libswitch-perl [out/host/linux-x86/obj/STATIC_LIBRARIES/libRS_intermediates/rsFont.o] Error 1 在frameworks/base/libs/rs/Android.mk 中第183行后面添加-fpermissive例如：LOCAL_CFLAGS += -Werror -Wall -Wno-unused-parameter -Wno-unused-variable -fpermissive* [out/host/linux-x86/obj/STATIC_LIBRARIES/liboprofile_pp_intermediates/arrange_profiles.o] Error 1 在external/oprofile/libpp/format_output.h中第94行，将mutable移除 ，改为counts_t &amp; counts; [out/host/linux-x86/obj/EXECUTABLES/test-librsloader_intermediates/test-librsloader] Error 1 在external/llvm/llvm-host-build.mk中添加 LOCAL_LDLIBS := -lpthread -ldl [out/host/linux-x86/obj/STATIC_LIBRARIES/libgtest_host_intermediates/gtest-all.o] Error 1 1）在external/gtest/src/Android.mk的52行和70行添加-fpermissive LOCAL_CFLAGS += -O0 -fpermissive 2）在external/gtest/include/gtest/internal/gtest-param-util.h中添加几个头文件 #include #include #include &lt;gtest/internal/gtest-port.h&gt; 编译SDK遇到的错误 12345678910development/build/sdk.atree:229: couldn&apos;t locate source file: framework/layoutlib-tests.jardevelopment/build/sdk.atree:230: couldn&apos;t locate source file: system/app/ConnectivityTest.apkdevelopment/build/sdk.atree:231: couldn&apos;t locate source file: system/app/GpsLocationTest.apksdk/build/tools.atree:47: couldn&apos;t locate source file: usr/share/pc-bios/bios.binsdk/build/tools.atree:48: couldn&apos;t locate source file: usr/share/pc-bios/vgabios-cirrus.binsdk/build/tools.atree:146: couldn&apos;t locate source file: framework/ddmlib-tests.jarsdk/build/tools.atree:147: couldn&apos;t locate source file: framework/ninepatch-tests.jarsdk/build/tools.atree:148: couldn&apos;t locate source file: framework/common-tests.jarsdk/build/tools.atree:150: couldn&apos;t locate source file: framework/sdkuilib-tests.jarmake: *** [out/host/linux-x86/sdk/android-sdk_eng.d_linux-x86.zip] Error 44 1）类似XXX-tests.jar的问题，通过在AndroidSRC/out/host/linux-x86/framework/，中ddmlib.jar复制一份名为ddmlib-tests.jar。 2）运行lunch sdk-eng 再执行m sdk]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA['将Android庫上傳到私服']]></title>
+    <url>%2F2019%2F12%2F14%2FAndroid%2F%E5%B0%87Android%E5%BA%AB%E4%B8%8A%E5%82%B3%E5%88%B0%E7%A7%81%E6%9C%8D%2F</url>
+    <content type="text"><![CDATA[使用nexus搭建自己的私服，过程记录一下。nexus官方文档地址：点击这里，这里面有详细的教程。 nexus3下载地址：Unix，WindowsMaxOS 1. Android发布组件按照教程安装好后，进入nexus系统，并创建resipotory,复制地址。 http://192.168.18.33:8081/repository/android/ 打开需要上传到仓库的android module中的build.gradle文件写入以下代码,pom对应的属性在nexus中可以看到。12345678910111213141516171819202122apply plugin: &apos;maven&apos;uploadArchives &#123; repositories &#123; mavenDeployer &#123; repository(url: &apos;http://192.168.18.33:8081/repository/android/&apos;) &#123; authentication(userName: &quot;xxxxxxx&quot;, password: &quot;xxxxxxx&quot;) &#125; pom.project &#123; version &quot;1.0.0&quot; artifactId &quot;libtest&quot; groupId &quot;com.test&quot; packaging &quot;aar&quot; description &quot;test&quot; &#125; &#125; &#125;&#125;repositories &#123; mavenLocal()&#125; 2. 使用组件在客户端的根项目build.gradle文件中的allrepositories中写入私服的maven地址,一定要写用户名密码！1234567maven&#123; url &quot;http://192.168.18.33:8081/repository/android/&quot; credentials &#123; username &quot;xxxxxx&quot; password &quot;xxxxxx&quot; &#125; &#125; implementation “com.test:libtest:1.0.0” 3. 问题总结 我在上传组件的时候遇到传不上去的问题，最后是将.gradle-&gt;gradle.properties文件中的地址注释掉就好了。 在使用组件的时候出现401返回错误，最后是由于没有写credentials用户名和密码导致。]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React相关笔记]]></title>
+    <url>%2F2019%2F04%2F27%2FReact%2FReact%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[整理React开发，笔记 JSX语法 什么是JSX语法，就是符合xml规范的JS语法 如何启动jsx语法 安装babel插件（具体查看github） 运行npm i babel-core babel-loader babel-plugin-transform-runtime -D 运行npm i babel-preset-env babel-preset-stage-0 -D 安装能够识别jsx语法的包 babel-preset-react 运行npm i babel-preset-react -D React Native用到的命令 弹出调试窗口 adb shell input keyevent 82]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA['Android常用命令']]></title>
+    <url>%2F2019%2F04%2F20%2FAndroid%2FAndroid%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[记录一下，Android开发的常用命令 adb调试adb devices &nbsp; 列出当前连接的设备adb reboot &nbsp; 重启adb -s &lt;设备号&gt; install &lt;apk路径&gt; &nbsp; 安装apk到手机 开发中常用gradlew assembleRelease 构建release包]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NGINX相关笔记]]></title>
+    <url>%2F2019%2F04%2F12%2FService%2FNGINX%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[整理Nginx安装，常用命令，使用，配置。 安装 创建/etc/yum.repos.d/nginx.reposudo vim /etc/yum.repos.d/nginx.repo 填写内容 12345678910111213[nginx-stable]name=nginx stable repobaseurl=http://nginx.org/packages/centos/$releasever/$basearch/gpgcheck=1enabled=1gpgkey=https://nginx.org/keys/nginx_signing.key[nginx-mainline]name=nginx mainline repobaseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/gpgcheck=1enabled=0gpgkey=https://nginx.org/keys/nginx_signing.key 使用mainline nginx的包sudo yum-config-manager --enable nginx-mainline 安装 sudo yum install nginx 测试是否安装成功nginx -v 查看版本nginx -t返回：nginx: configuration file /etc/nginx/nginx.conf test is successful sudo nginx 启动nginx发现错误：nginx: [emerg] still could not bind()原因：80端口被占用解决： sudo netstat -anp | grep 80 查看80端口使用情况]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[MySql数据库]]></title>
+    <url>%2F2019%2F04%2F11%2FService%2FMySql%E6%95%B0%E6%8D%AE%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[MySql数据库 名称解释 名称 简述 关系 一个关系通常说的是一张表 元组 表中的一行即为一个元组。 属性 表中的一列即为一个属性；每个属性都有一个名称，称为属性名。 候选码 表中的每个属性组，它可以唯一确定一个元组。 主码 一个关系又多个候选码，选定其中一个为主码 域 属性的取值范围 分量 元组中的一个属性值 SQL语句基础语句： select - 从数据库中提取数据 update - 更新数据库中的数据 delete - 从数据库中删除数据 insert into - 向数据库中插入新数据 create table - 创建新表 alert table - 修改数据库表 drop table - 删除表 create index - 创建索引 drop index - 删除索引 常用语句：show databases 显示所有数据库 。use database_name 进入某个数据库 ， databases_name 为某个数据库名。select * from table_name 查询某个表的所有数据 ，table_name 为表名。create database database_name 创建数据库，其中database_name 为数据库名称desc table_name 查看一个表的结构show create table table_name 查看创建表的SQL语句exit 退出数据库 (仅仅断开了客户端和服务器的连接) 查询语句条件语句 OR： 或者 AND: 并且 NOT：不符合该条件 =：判断相等 &gt;：判断大于 &gt;=：判断大于或者等于 &lt;：判断小于 &lt;=：判断小于或者等于 &lt;&gt;：判断不相等 LIKE：判断相似 练习： where 关键字后面的 score &gt;= 80 是条件。select * from students where score &gt;= 80; 条件表达式用&lt;条件1&gt; AND &lt;条件2&gt;表达满足条件1并且满足条件2.符合条件“分数在80分或以上”，并且还符合条件“男生” , 就可以写：select * from students where score &gt;= 80 AND gender = &#39;M&#39;; 条件表达式用&lt;条件1&gt; OR &lt;条件2&gt;表达满足条件1或者满足条件2。分数在80分或以上”或者“男生” , 可以写：select * from students where score &gt;= 80 OR gender = &#39;M&#39;; 不是2班的学生select * from students where NOT class_id = 2;也可以写成：select * from students where class_id &lt;&gt; 2; 查询分数在60分(含)~90分(含)之间的学生select * from students where score &gt;= 60 AND score &lt;= 90;select * from students where score between 60 and 90; 投影查询用SELECT 列1, 列2, 列3 FROM ...，让结果集仅包含指定列。这种操作称为投影查询。还可以给每一个列名起别名，它的语法是：SELECT 列1 别名1, 列2 别名2, 列3 别名3 FROM...练习： 从students表中返回id、score和name这三列select id,score,name from students; SELECT语句将列名score重命名为points，而id和name列名保持不变select id,score points,name from students; 排序关键字：ORDER BY默认是正序：ASC如果有WHERE子句，那么ORDER BY子句要放到WHERE子句后面。练习： 按照成绩从低到高进行排序。正序 ASCselect id,score,name from students order by score; 按照成绩从高到低进行排序。倒序 DESCselect id,score,name from students order by score desc; 先按score列倒序，如果有相同分数的，再按gender列排序select id ,score ,name,gender from students order by score desc , gender; 查询一班的学生成绩，并按照倒序排序select * from students where class_id = 1 order by score desc; 聚合查询 函数 说明 COUNT 统计数量 SUM 计算某一列的合计值，该列必须为数值类型 AVG 计算某一列的平均值，该列必须为数值类型 MAX 计算某一列的最大值 MIN 计算某一列的最小值 注意：如果聚合查询的where条件没有匹配到任何行，COUNT()会返回0，而SUM()、AVG()、MAX()、MIN()会返回NULL; 练习： 查询students表中的一共有多少记录select COUNT(*) from students;可以给列名起个别名select COUNT(*) num from students; 统计有多少男生select COUNT(*) boys from students where gender = &#39;M&#39;; 统计男生的平均成绩select AVG(score) from students where gender = &#39;M&#39;; 分组聚合练习： 统计各班级人数select class_id,COUNT(*) num from students group by class_id; 统计各班的男生和女生人数select class_id,gender,COUNT(*) num from students group by class_id,gender; 用一条SELECT查询查出每个班级的平均分select class_id,AVG(score) from students group by class_id; 用一条SELECT查询查出每个班级的平均分 保留两位小数select class_id,round(AVG(score),2) from students group by class_id; 查出每个班级男生和女生的平均分select class_id,gender,round(avg(score),2) from students group by class_id,gender; 连接查询内连接： 先确定主表，仍然使用from &lt;表1&gt;的语法; 再确定需要连接的表，使用inner join &lt;表2&gt;的语法； 然后确定连接条件，使用ON &lt;条件...&gt;，这里的条件是students.class_id = classes.id，表示students表的class_id列与classes表的id列相同的行需要连接； 可选：加上where子句，order by 等子句。 练习： 把每位学生对应的班级名称列出来.1234select s.id,s.name,s.class_id,c.name class_name,s.gender,s.score from students s inner join classes c ON s.class_id = c.id; 插入语句语法: INSERT INTO &lt;表名&gt; (字段1, 字段2, ...) VALUES (值1, 值2, ...);也可以一次性添加多条记录，只需在VALUES子句中指定多个记录值，每个记录用括号 例如：123INSERT INTO students (class_id, name, gender, score) VALUES (1, &apos;大宝&apos;, &apos;M&apos;, 87), (2, &apos;二宝&apos;, &apos;M&apos;, 81); 练习： 向students表插入一条新记录INSERT INTO test_database.students (id, class_id, name, gender, score) VALUES (11, 3, &#39;小丽2&#39;, &#39;M&#39;, 85); 更新语句语法:UPDATE &lt;表名&gt; SET 字段1=值1, 字段2=值2, ... WHERE ...; 练习： 更新id为1的学生的姓名和分数两个字段update students set name =&#39;大牛&#39;,score=66 where id = 1; 更新id = 5,6,7的记录update students set name =&#39;大牛&#39;,score=66 where id &gt;=5 AND id &lt;=7; 把所有80分以下的同学的成绩加10分update students set score = score + 10 where score &lt; 80;注意:执行这句遇到了 1175 问题，执行 SET SQL_SAFE_UPDATES = 0解决; 注意：UPDATE语句可以没有WHERE条件,假设执行update students SET score=60;,会使整个表所有的记录都被更新。最好先用select语句来测试where条件是否筛选出了期望的记录，然后再用update更新。 删除语句语法：DELETE FROM &lt;表名&gt; WHERE ...; 练习： 删除id=1的记录delete from students where id=1; 注意：delete和update类似，不带where条件也可以执行。如果执行delete from students会删除整个表的数据 笔记参考 菜鸟教程雪峰老师]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[服务器端相关的操作手册]]></title>
+    <url>%2F2019%2F04%2F11%2FService%2F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C%2F</url>
+    <content type="text"><![CDATA[记录服务器端常用的安装与命令 Mysql数据库安装操作(CentOS7)1. 需要去官网下载Yum资源包，下载地址2. 找到.rpm后缀的文件名(mysql80-community-release-el7-2.noarch.rpm)。完整地址就是：http://repo.mysql.commysql80-community-release-el7-2.noarch.rpm 3. 安装命令1234wget http://repo.mysql.commysql80-community-release-el7-2.noarch.rpmrpm -ivh mysql80-community-release-el7-2.noarch.rpmyum updateyum install mysql-server 4. 访问数据库 远程访问数据库 1mysql -h hostname -P port -u username -p 请将 hostname 替换为目标 MySQL 数据库实例的内网 IP 地址，将 username 替换为默认的用户名 root，port是端口号，并在提示 Enter password：后输出 root 账户对应的密码。 本地访问数据库 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455mysql -u root -p ``` 并在提示 Enter password：后输出 root 账户对应的密码。##### 5. [基础操作命令](http://linux.vbird.org/linux_basic/0160startlinux.php#start_startx)- 修改密码&gt; passwd 用户名- 登出: exit- 显示日期：date&gt; date +%Y/%m/%d&gt; date +%H:%M- 日历：cal&gt; cal [month] [year]- 计算器： bc- 翻页 ： [Shift]+[Page Down] - 关机 ：shutdown&gt; [root@study ~]# shutdown -h now&gt; 立刻關機，其中 now 相當於時間為 0 的狀態&gt; [root@study ~]# shutdown -h 20:25&gt; 系統在今天的 20:25 分會關機，若在21:25才下達此指令，則隔天才關機&gt; [root@study ~]# shutdown -h +10&gt; 系統再過十分鐘後自動關機&gt; [root@study ~]# shutdown -r now&gt; 系統立刻重新開機&gt; [root@study ~]# shutdown -r +30 &apos;The system will reboot&apos; &gt; 再過三十分鐘系統會重新開機，並顯示後面的訊息給所有在線上的使用者&gt; [root@study ~]# shutdown -k now &apos;This system will reboot&apos; &gt; 僅發出警告信件的參數！系統並不會關機啦！嚇唬人！- 管理工具 systemctl 关机&gt; [root@study ~]# systemctl [指令]&gt; 指令項目包括如下：&gt; halt 進入系統停止的模式，螢幕可能會保留一些訊息，這與你的電源管理模式有關&gt; poweroff 進入系統關機模式，直接關機沒有提供電力喔！&gt; reboot 直接重新開機&gt; suspend 進入休眠模式&gt; [root@study ~]# systemctl reboot # 系統重新開機&gt; [root@study ~]# systemctl poweroff # 系統關機##### 6. [账户管理](http://linux.vbird.org/linux_basic/0410accountmanager.php)#### nvm安装1. `cd ~/` 进入根目录 执行：`git clone https://github.com/creationix/nvm.git .nvm`2. `cd ~/.nvm` 执行：`git checkout v0.34.0` 。 版本号自己选择3. 在.bash_profile最后一行添加 export NVM_DIR=~/.nvmsource ~/.nvm/nvm.sh1234564. 最后执行 `source .bash_profile`5. 安装pm2 `npm install pm2 -g`#### CentOs安装redis1. 官网上给的命令 wget http://download.redis.io/releases/redis-5.0.4.tar.gz tar xzf redis-5.0.4.tar.gz cd redis-5.0.4 make ` 我遇到的问题: Error jemalloc/jemalloc.h: No such file or directory when making Redis解决：执行 make distclean 清除早期编译的文件 make cc Command not found解决：系统没有安装gcc，执行sudo yum install gcc 用到的命令：mv redis-5.0.4.tar.gz /usr/local/redis 移动并且重命名]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[markdown基础语法]]></title>
+    <url>%2F2019%2F04%2F04%2FTool%2Fmarkdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[Markdown时一种存文本格式的标记语言。 1. 标题 示例 #这是一级标题##这是二级标题###这是三级标题####这是四级标题#####这是五级标题######这是六级标题 效果： 这是一级标题这是二级标题这是三级标题这是四级标题这是五级标题这是六级标题 2. 字体** 这是要加粗的文字 **&nbsp;&nbsp;&nbsp;效果：这是要加粗的文字* 这是要倾斜的文字 * &nbsp;&nbsp;&nbsp;效果：这是要倾斜的文字*** 这是要斜体加粗的文字 ***&nbsp;&nbsp;效果：这是要斜体加粗的文字~~这是加删除线的文字~~&nbsp;&nbsp;&nbsp;效果：这是加删除线的文字 3.引用在引用的文字前加&gt; ，引用可以嵌套&gt;&gt;&gt;&nbsp;&nbsp;效果： 这是引用的内容 这是两个引用的内容 这是三个引用的内容 4.分割线使用 --- | *** 都可以 效果： 5.图片语法：123![图片alt](图片地址 &quot;图片标题&quot;)图片alt：鼠标移到图片上显示的提示内容图片标题：显示在图片下方的文字 示例：123![AndroidLogo](https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1554357642796&amp;di=6d1985975e76c97c028f89b596baeb99&amp;imgtype=0&amp;src=http%3A%2F%2Fp0.qhimg.com%2Ft01633a3783e337f6f7.jpg%3Fsize%3D3200x1800 &quot;Android&quot;) 6. 列表无序列表用 - + * 任何一种都可以123- 列表内容+ 列表内容* 列表内容 效果： 列表内容 列表内容 列表内容 有序列表 用数字加点1231. 列表内容2. 列表内容3. 列表内容 效果： 列表内容 列表内容 列表内容 7. 超链接语法：12345[超链接名](超链接地址 &quot;超链接标题&quot;)标题可加可不加示例：[简书](http://jianshu.com)[百度](http://baidu.com) 效果： 简书 百度 8. 表格语法：12345678|表头|表头|表头||--|:--:|---:||内容|内容|内容||内容|内容|内容|:--: 居中:-- 左对齐--: 右对齐 姓名 技能 排行 刘备 哭 大哥 关羽 打 二哥 张飞 骂 三弟 9.代码语法：单行代码：代码之间分别用一个反引号包起来1`代码内容` 效果：public static void main(String[] args) 语法：多行代码 三个点包着效果：123function()&#123; console.log(&apos;我是JavaScript&apos;)&#125; 参考文章：Markdown基础语法]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android绘制手记]]></title>
+    <url>%2F2019%2F04%2F04%2FAndroid%2FAndroid%E7%BB%98%E5%88%B6%E6%89%8B%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[Android绘制相关的API方法 Paint用法1 颜色1.1 设置颜色1.1.1 setColor(int color)12paint.setColor(Color.parseColor("#FF9800"))paint.setColor(Color.BLACK) 1.1.2 setARGB(int a,int r ,int g,int b)1paint.setARGB(100,255,0,0) 1.1.3 setShader(Shader shader)Shader子类：LinearGradient &nbsp;&nbsp;线性渐变，&nbsp; RadialFradient &nbsp;&nbsp;辐射渐变，SweepGradient &nbsp;&nbsp;扫描渐变&nbsp;，BitmapShader &nbsp;&nbsp; Bitmap资源，&nbsp;ComposeShader &nbsp;&nbsp; 混合着色器 LinearGradient 线性渐变构造方法：12345LinearGradient(float x0, float y0,float x1,float y1,int color0,int color1)参数:x0 y0 x1 y1 渐变两个端点的位置color0 color1 端点的颜色tile 着色规则 类型是TileMode。有3个值：CLAMP,MIRROR镜像和REPEAT重复]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AS出现Default Activity not found怎么解决]]></title>
+    <url>%2F2018%2F12%2F27%2FAndroid%2FActivityNotFound%2F</url>
+    <content type="text"><![CDATA[今天遇到了Default Activity not found问题记录一下 Delete the caches from your %Home%\.gradle\caches and sync project 此方法对我有效 来源：https://github.com/googlesamples/android-CommitContentSampleIME/issues/2]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA['如何进行远程连接']]></title>
+    <url>%2F2018%2F12%2F17%2FSystem%2F%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%2F</url>
+    <content type="text"><![CDATA[记录一下远程连接的操作 两台Window PC之间的远程连接假设需要被远程控制的计算机称为A，反之为B 前提条件： 必须要有网络连接，并且在局域网内。 如果没有用户密码，需要添加用户密码。 步骤： A打开控制面板，找到远程桌面，启动远程桌面（这里使用的是window10系统，其他系统可以查一下远程桌面在哪里） A给B提供Ip号码，win+R 输入 cmd ，继续输入 ipconfig 选择目前在用的网络，复制ip A给B提供用户名和密码，在控制面板-账户中设置 B打开远程控制软件 添加 - 输入A提供的ip和用户名密码，选择连接 @参考support.microsoft.com/zh-cn/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection Mac与Window PC之间的远程连接Mac上使用Mac远程连接版本除了需要下载Microsoft远程桌面软件以外，思路和Window &amp; Window 的连接一样]]></content>
+      <categories>
+        <category>system</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+</search>
