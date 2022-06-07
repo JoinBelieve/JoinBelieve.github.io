@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>AS出现Default Activity not found怎么解决</title>
+    <url>/2018/12/27/Android/ActivityNotFound/</url>
+    <content><![CDATA[<blockquote>
+<p>今天遇到了Default Activity not found问题记录一下</p>
+</blockquote>
+<span id="more"></span>
+
+<blockquote>
+<p>Delete the caches from your <code>%Home%\.gradle\caches</code> and sync project</p>
+</blockquote>
+<p>此方法对我有效</p>
+<blockquote>
+<p>来源：<br><a href="https://github.com/googlesamples/android-CommitContentSampleIME/issues/2">https://github.com/googlesamples/android-CommitContentSampleIME/issues/2</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>&#39;Android常用命令&#39;</title>
+    <url>/2019/04/20/Android/Android%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>记录一下，Android开发的常用命令</p>
+<span id="more"></span>
+<h3 id="adb调试"><a href="#adb调试" class="headerlink" title="adb调试"></a><a href="https://developer.android.com/studio/command-line/adb?hl=zh-cn">adb调试</a></h3><p><code>adb devices</code> &amp;nbsp; 列出当前连接的设备<br><code>adb reboot</code> &amp;nbsp; 重启<br><code>adb -s &lt;设备号&gt; install &lt;apk路径&gt;</code> &amp;nbsp; 安装apk到手机 </p>
+<h3 id="开发中常用"><a href="#开发中常用" class="headerlink" title="开发中常用"></a>开发中常用</h3><p><code>gradlew assembleRelease</code> 构建release包</p>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android绘制手记</title>
+    <url>/2019/04/04/Android/Android%E7%BB%98%E5%88%B6%E6%89%8B%E8%AE%B0/</url>
+    <content><![CDATA[<blockquote>
+<p>Android绘制相关的API方法</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="Paint用法"><a href="#Paint用法" class="headerlink" title="Paint用法"></a>Paint用法</h2><h3 id="1-颜色"><a href="#1-颜色" class="headerlink" title="1 颜色"></a>1 颜色</h3><h4 id="1-1-设置颜色"><a href="#1-1-设置颜色" class="headerlink" title="1.1 设置颜色"></a>1.1 设置颜色</h4><h5 id="1-1-1-setColor-int-color"><a href="#1-1-1-setColor-int-color" class="headerlink" title="1.1.1 setColor(int color)"></a>1.1.1 setColor(int color)</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">paint.setColor(Color.parseColor(<span class="string">&quot;#FF9800&quot;</span>))</span><br><span class="line">paint.setColor(Color.BLACK)</span><br></pre></td></tr></table></figure>
+<h5 id="1-1-2-setARGB-int-a-int-r-int-g-int-b"><a href="#1-1-2-setARGB-int-a-int-r-int-g-int-b" class="headerlink" title="1.1.2 setARGB(int a,int r ,int g,int b)"></a>1.1.2 setARGB(int a,int r ,int g,int b)</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">paint.setARGB(<span class="number">100</span>,<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="1-1-3-setShader-Shader-shader"><a href="#1-1-3-setShader-Shader-shader" class="headerlink" title="1.1.3 setShader(Shader shader)"></a>1.1.3 setShader(Shader shader)</h5><p>Shader子类：LinearGradient &amp;nbsp;&amp;nbsp;线性渐变，&amp;nbsp; RadialFradient &amp;nbsp;&amp;nbsp;辐射渐变<br>，SweepGradient  &amp;nbsp;&amp;nbsp;扫描渐变&amp;nbsp;，BitmapShader   &amp;nbsp;&amp;nbsp; Bitmap资源，&amp;nbsp;ComposeShader  &amp;nbsp;&amp;nbsp; 混合着色器</p>
+<h6 id="LinearGradient-线性渐变"><a href="#LinearGradient-线性渐变" class="headerlink" title="LinearGradient 线性渐变"></a>LinearGradient 线性渐变</h6><p>构造方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LinearGradient(float x0, float y0,float x1,float y1,int color0,int color1)</span><br><span class="line">参数:</span><br><span class="line">x0 y0 x1 y1 渐变两个端点的位置</span><br><span class="line">color0 color1  端点的颜色</span><br><span class="line">tile 着色规则 类型是TileMode。有3个值：CLAMP,MIRROR镜像和REPEAT重复</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jetpack-WorkManager</title>
+    <url>/2020/05/16/Android/Jetpack-WorkManager/</url>
+    <content><![CDATA[<p>Android Jetpack之WorkManager认识</p>
+<span id="more"></span>
+
+<ol>
+<li>简介</li>
+</ol>
+<p>Android上有许多延期的后台工作选项。这是一个可以延迟的后台工作的兼容，灵活且简单的库。</p>
+<ol start="2">
+<li>什么是WorkManager</li>
+</ol>
+<p>WorkManager是Android Jetpack的一部分，是用于后台工作的架构组件。有保证的执行意味着即使在离开应用程序的情况下，WorkManager也会照顾在各个情况下开始工作的逻辑。</p>
+<p>WorkManager的优点如下：</p>
+<ul>
+<li>支持异步一次性任务和定期任务</li>
+<li>支持网络条件，存储空间和充电状态等约束</li>
+<li>链接复杂的工作请求，包括并行运行工作。</li>
+<li>一个工作请求的输出用作下一个工作的输入？</li>
+<li>API兼容到了14</li>
+<li>可以使用或者不适应GooglePlay服务</li>
+<li>遵循系统健康最佳实践</li>
+<li>LiveData支持可轻松在UI中显示工作请求状态</li>
+</ul>
+<ol start="3">
+<li>何时使用WorkManager</li>
+</ol>
+<p>即使用户离开特定屏幕或你的应用程序，WorkManager库对完成有用的任务也是不错的选择。</p>
+<p>可以很好地使用WorkManager的一些任务示例：</p>
+<ul>
+<li>上传日志</li>
+<li>将过滤器应用于图像并且保存图像</li>
+<li>定期将本地数据于网络同步</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu1404 AMD64编译Android4.0.1源码</title>
+    <url>/2020/04/13/Android/Ubuntu1404-AMD64%E7%BC%96%E8%AF%91Android4-0-1%E6%BA%90%E7%A0%81/</url>
+    <content><![CDATA[<p>ubuntu 1404 AMD64 下载编译Android4.0</p>
+<span id="more"></span>
+
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><ol>
+<li>搭建编译环境：<a href="https://source.android.com/source/initializing.html#installing-required-packages-ubuntu-1404">需要的软件包</a></li>
+<li>下载repo<a href="https://mirrors.tuna.tsinghua.edu.cn/help/git-repo/">参考</a></li>
+</ol>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir ~/bin</span><br><span class="line">PATH=~/bin:$PATH</span><br><span class="line">cd ~/bin</span><br><span class="line">curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o repo</span><br><span class="line">chmod +x repo</span><br><span class="line"># 配置repo更新，使用tuna镜像源更新，将下面内容复制到~/.bashrc里</span><br><span class="line">export REPO_URL=&#x27;https://mirrors.tuna.tsinghua.edu.cn/git/git-repo&#x27;</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ol start="3">
+<li>安装JDK1.6<a href="https://www.oracle.com/technetwork/java/javase/install-linux-64-self-extracting-142068.html">参考</a></li>
+</ol>
+<ul>
+<li><p>下载：<a href="https://www.oracle.com/java/technologies/javase-java-archive-javase6-downloads.html">https://www.oracle.com/java/technologies/javase-java-archive-javase6-downloads.html</a>    ，我下的是：jdk-6u45-linux-x64.bin，将它复制到&#x2F;usr&#x2F;java，改为可执行，执行安装，添加到PATH环境，具体操作如下：</p>
+<blockquote>
+<p>mkdir &#x2F;usr&#x2F;java</p>
+<p>cp ~&#x2F;Downloads&#x2F;jdk-6u45-linux-x64.bin &#x2F;usr&#x2F;java</p>
+<p>cd &#x2F;usr&#x2F;java</p>
+<p>chmod +x jdk-6u45-linux-x64.bin</p>
+<p> .&#x2F;jdk-6u45-linux-x64.bin</p>
+<p>sudo rm -rf jdk-6u45-linux-x64.bin</p>
+<p>#配置环境</p>
+<p>sudo vim ~&#x2F;.bashrc</p>
+<p><strong>export ANDROID_JAVA_HOME&#x3D;’&#x2F;usr&#x2F;java&#x2F;jdk1.6.0_45’</strong><br><strong>export PATH&#x3D;”$ANDROID_JAVA_HOME&#x2F;bin:$PATH”</strong><br><strong>export CLASSPATH&#x3D;”$ANDROID_JAVA_HOME&#x2F;lib&#x2F;dt.jar:$ANDROID_JAVA_HOME&#x2F;lib&#x2F;tools.jar”</strong></p>
+<p>source ~&#x2F;.bashrc</p>
+</blockquote>
+</li>
+</ul>
+<ol start="4">
+<li><p>同步源码</p>
+<blockquote>
+<p>mkdir AndroidResource</p>
+<p>cd AndroidResource</p>
+<p>repo init -u <a href="https://aosp.tuna.tsinghua.edu.cn/platform/manifest">https://aosp.tuna.tsinghua.edu.cn/platform/manifest</a> -b android-4.0.1_r1</p>
+<p>repo sync</p>
+</blockquote>
+</li>
+<li><p>编译源码（过程会有一些错，在文章的最底部）</p>
+<blockquote>
+<p>source build&#x2F;envsetup.sh</p>
+<p>.&#x2F;build&#x2F;envsetup.sh</p>
+<p>m</p>
+</blockquote>
+</li>
+<li><p>编译SDK（过程会有一些错，在文章的最底部）</p>
+<blockquote>
+<p>m sdk</p>
+</blockquote>
+</li>
+<li><p>运行</p>
+<ul>
+<li><p>设置环境变量</p>
+<blockquote>
+<p>export PATH&#x3D;”<del>&#x2F;AndroidResource&#x2F;out&#x2F;host&#x2F;linux-x86&#x2F;bin:$PATH”<br>export ANDROID_PRODUCT_OUT&#x3D;</del>&#x2F;AndroidResource&#x2F;out&#x2F;target&#x2F;product&#x2F;generic</p>
+</blockquote>
+</li>
+</ul>
+<p>其中*<del>&#x2F;AndroidResource&#x2F;out&#x2F;host&#x2F;linux-x86&#x2F;bin<em>中有emulator指令，</em></del>&#x2F;AndroidResource&#x2F;out&#x2F;target&#x2F;product&#x2F;generic*有Android镜像</p>
+<ul>
+<li><p>将编译的Android镜像运行到emulator上</p>
+<blockquote>
+<p>emulator-arm  &#x2F;&#x2F;或 emulator</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="编译Android源码遇到的错误"><a href="#编译Android源码遇到的错误" class="headerlink" title="编译Android源码遇到的错误"></a>编译Android源码遇到的错误</h5><ol>
+<li><strong>error: sys&#x2F;cdefs.h: No such file or directory</strong></li>
+</ol>
+<blockquote>
+<p>sudo apt-get install libc6-dev-i386</p>
+</blockquote>
+<ol start="2">
+<li><p><strong>在安装JDK6之后，还是找不到jdk6</strong></p>
+<ul>
+<li><p>打开&#x2F;build&#x2F;core&#x2F;find-jdk-tools-jar.sh可以发现，缺少$ANDROID_JAVA_HOME，把~&#x2F;.bashrc 中的JAVA_HOME改成ANDROID_JAVA_HOME</p>
+</li>
+<li><p>修改权限存放Android源码的目录：<em>sudo chmod 755 -R ~&#x2F;AndroidResource&#x2F;</em></p>
+</li>
+</ul>
+</li>
+<li><p><strong>not found bits&#x2F;c++config.h，<a href="https://stackoverflow.com/questions/4643197/missing-include-bits-cconfig-h-when-cross-compiling-64-bit-program-on-32-bit">参考</a></strong></p>
+<ul>
+<li><blockquote>
+<p>sudo apt-get install gcc-4.8-multilib g++-4.8-multilib</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;aapt_intermediates&#x2F;AaptAssets.o] Error 1</strong></p>
+<ul>
+<li><p>在*&#x2F;frameworks&#x2F;base&#x2F;tools&#x2F;aapt&#x2F;Android.mk* 第31行处改为</p>
+<p><em>LOCAL_CFLAGS +&#x3D; -Wno-format-y2k -fpermissive</em></p>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;libutils_intermediates&#x2F;AssetManager.o] Error 1</strong></p>
+</li>
+</ol>
+<ul>
+<li><p>在&#x2F;frameworks&#x2F;base&#x2F;libs&#x2F;utils&#x2F;Android.mk 第64行 改为</p>
+<p><em>LOCAL_CFLAGS +&#x3D; -DLIBUTILS_NATIVE&#x3D;1 $(TOOL_CFLAGS) -fpermissive</em></p>
+</li>
+</ul>
+<ol start="6">
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;grxmlcompile_intermediates&#x2F;grxmlcompile.o] Error 1</strong></p>
+<ul>
+<li><blockquote>
+<p>wget “<a href="https://github.com/CyanogenMod/android_external_srec/commit/4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff&quot;">https://github.com/CyanogenMod/android_external_srec/commit/4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff&quot;</a></p>
+<p> patch -p1 &lt; 4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff</p>
+<p> rm -f 4d7ae7b79eda47e489669fbbe1f91ec501d42fb2.diff</p>
+<p> cd ..&#x2F;..</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;SHARED_LIBRARIES&#x2F;libdvm_intermediates&#x2F;native&#x2F;dalvik_system_Zygote.o] Error 1</strong></p>
+<ul>
+<li>添加 <em>#include &lt;sys&#x2F;resource.h&gt;</em> 到 <em>dalvik&#x2F;vm&#x2F;native&#x2F;dalvik_system_Zygote.cpp</em> 中</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;emugen_intermediates&#x2F;main.o] Error 1</strong></p>
+<ul>
+<li>在 <em>development&#x2F;tools&#x2F;emulator&#x2F;opengl&#x2F;host&#x2F;tools&#x2F;emugen&#x2F;main.cpp</em> 中添加 <em>#include &lt;getopt.h&gt;</em></li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;libOpenglCodecCommon_intermediates&#x2F;GLSharedGroup.o] Error 1</strong></p>
+<ul>
+<li><p>在 <em>development&#x2F;tools&#x2F;emulator&#x2F;opengl&#x2F;Android.mk</em> 第25行 改为</p>
+<p><em>EMUGL_COMMON_CFLAGS :&#x3D; -DWITH_GLES2 -fpermissive</em></p>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;lib&#x2F;libOpenglRender.so] Error 1</strong></p>
+<ul>
+<li><blockquote>
+<p>sudo apt-get install libx11-dev:i386</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;emulator_renderer_intermediates&#x2F;emulator_renderer] Error 1</strong></p>
+<ul>
+<li>在  <em>development&#x2F;tools&#x2F;emulator&#x2F;opengl&#x2F;host&#x2F;renderer&#x2F;Android.mk</em> 新增一行 <em>LOCAL_LDLIBS +&#x3D; -lX11</em>，如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LOCAL_SRC_FILES := main.cpp</span><br><span class="line">LOCAL_CFLAGS    += -O0 -g</span><br><span class="line">LOCAL_LDLIBS += -lX11</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>&#x2F;usr&#x2F;include&#x2F;zlib.h:34:19: fatal error: zconf.h: No such file or directory -&gt;  #include “zconf.h”</strong></p>
+<ul>
+<li>在usr&#x2F;include中没有找到zconf.h，由于zlib1g-dev的路径改变，才找不到。解决办法：将新路径的zconf.h拷贝到usr&#x2F;include目录下，如下：</li>
+</ul>
+<blockquote>
+<p>sudo cp &#x2F;usr&#x2F;include&#x2F;x86_64-linux-gnu&#x2F;zconf.h &#x2F;usr&#x2F;include&#x2F;</p>
+</blockquote>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;obbtool_intermediates&#x2F;Main.o] Error 1</strong></p>
+<ul>
+<li><p>将*&#x2F;build&#x2F;core&#x2F;combo&#x2F;HOST_linux-x86.mk* 中的 <em>HOST_GLOBAL_CFLAGS +&#x3D; -D_FORTIFY_SOURCE&#x3D;0</em> 修改为</p>
+<p><em><strong>HOST_GLOBAL_CFLAGS +&#x3D; -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE&#x3D;0</strong></em></p>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;lib&#x2F;libGLES_CM_translator.so] Error 1</strong></p>
+<ul>
+<li><p>如果在&#x2F;usr&#x2F;lib&#x2F;i386-linux-gnu&#x2F;中没有发现mesa文件夹，安装（<a href="https://askubuntu.com/questions/588024/steam-install-error-on-14-04-ubuntu-64bit">参考</a>）</p>
+<blockquote>
+<p>sudo apt-get install libc6:i386<br>sudo apt-get install libgl1-mesa-glx-lts-trusty:i386</p>
+</blockquote>
+<p>有的话，执行（libGL.so.1查看自己的版本）</p>
+<blockquote>
+<p>sudo ln -s &#x2F;usr&#x2F;lib&#x2F;i386-linux-gnu&#x2F;mesa&#x2F;libGL.so.1 &#x2F;usr&#x2F;lib&#x2F;libGL.so</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;llvm-rs-cc_intermediates&#x2F;slang_rs.o] Error 1</strong></p>
+</li>
+</ol>
+<ul>
+<li>将<em>frameworks&#x2F;compile&#x2F;slang&#x2F;Android.mk</em>第21行<em><strong>local_cflags_for_slang :&#x3D; -Wno-sign-promo -Wall -Wno-unused-parameter</strong></em>注释掉</li>
+</ul>
+<ol start="16">
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;libLLVMJIT_intermediates&#x2F;Intercept.o] Error 1</strong></p>
+<ul>
+<li><p>在<em>external&#x2F;llvm&#x2F;lib&#x2F;ExecutionEngine&#x2F;JIT&#x2F;Intercept.cpp</em>中添加</p>
+</li>
+<li><blockquote>
+<p>#define _LARGEFILE64_SOURCE<br>#include &lt;stdlib.h&gt;<br>#include &lt;stdio.h&gt;<br>#include &lt;string.h&gt;<br>#include &lt;unistd.h&gt;<br>#include &lt;sys&#x2F;types.h&gt;<br>#include &lt;sys&#x2F;stat.h&gt;<br>#include &lt;fcntl.h&gt;<br>#include &lt;errno.h&gt;</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;target&#x2F;product&#x2F;generic&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;libwebcore_intermediates&#x2F;Source&#x2F;WebCore&#x2F;html&#x2F;DocTypeStrings.cpp] Error 2</strong></p>
+<ul>
+<li><blockquote>
+<p>sudo apt-get install libswitch-perl</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;libRS_intermediates&#x2F;rsFont.o] Error 1</strong></p>
+</li>
+</ol>
+<ul>
+<li>在<em>frameworks&#x2F;base&#x2F;libs&#x2F;rs&#x2F;Android.mk</em> 中第183行后面添加-fpermissive例如：<strong>LOCAL_CFLAGS +&#x3D; -Werror -Wall -Wno-unused-parameter -Wno-unused-variable -fpermissive</strong>*</li>
+</ul>
+<ol start="19">
+<li><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;liboprofile_pp_intermediates&#x2F;arrange_profiles.o] Error 1</strong></li>
+</ol>
+<ul>
+<li>在<em>external&#x2F;oprofile&#x2F;libpp&#x2F;format_output.h</em>中第94行，将<em>mutable</em>移除 ，改为<em><strong>counts_t &amp; counts;</strong></em></li>
+</ul>
+<ol start="20">
+<li><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;EXECUTABLES&#x2F;test-librsloader_intermediates&#x2F;test-librsloader] Error 1</strong></li>
+</ol>
+<pre><code>- 在*external/llvm/llvm-host-build.mk*中添加
+
+  &gt; LOCAL_LDLIBS := -lpthread -ldl
+</code></pre>
+<ol start="21">
+<li><p><strong>[out&#x2F;host&#x2F;linux-x86&#x2F;obj&#x2F;STATIC_LIBRARIES&#x2F;libgtest_host_intermediates&#x2F;gtest-all.o] Error 1</strong></p>
+<ul>
+<li><p>1）在<em>external&#x2F;gtest&#x2F;src&#x2F;Android.mk</em>的52行和70行添加*-fpermissive*</p>
+<blockquote>
+<p>LOCAL_CFLAGS +&#x3D; -O0 -fpermissive</p>
+</blockquote>
+</li>
+<li><p>2）在<em>external&#x2F;gtest&#x2F;include&#x2F;gtest&#x2F;internal&#x2F;gtest-param-util.h</em>中添加几个头文件</p>
+<blockquote>
+<p>#include <vector><br>#include <cstddef><br>#include &lt;gtest&#x2F;internal&#x2F;gtest-port.h&gt;</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="编译SDK遇到的错误"><a href="#编译SDK遇到的错误" class="headerlink" title="编译SDK遇到的错误"></a>编译SDK遇到的错误</h5><ol>
+<li><pre><code>development/build/sdk.atree:229: couldn&#39;t locate source file: framework/layoutlib-tests.jar
+development/build/sdk.atree:230: couldn&#39;t locate source file: system/app/ConnectivityTest.apk
+development/build/sdk.atree:231: couldn&#39;t locate source file: system/app/GpsLocationTest.apk
+sdk/build/tools.atree:47: couldn&#39;t locate source file: usr/share/pc-bios/bios.bin
+sdk/build/tools.atree:48: couldn&#39;t locate source file: usr/share/pc-bios/vgabios-cirrus.bin
+sdk/build/tools.atree:146: couldn&#39;t locate source file: framework/ddmlib-tests.jar
+sdk/build/tools.atree:147: couldn&#39;t locate source file: framework/ninepatch-tests.jar
+sdk/build/tools.atree:148: couldn&#39;t locate source file: framework/common-tests.jar
+sdk/build/tools.atree:150: couldn&#39;t locate source file: framework/sdkuilib-tests.jar
+make: *** [out/host/linux-x86/sdk/android-sdk_eng.d_linux-x86.zip] Error 44
+</code></pre>
+<ul>
+<li><p>1）类似XXX-tests.jar的问题，通过在*AndroidSRC&#x2F;out&#x2F;host&#x2F;linux-x86&#x2F;framework&#x2F;*，中ddmlib.jar复制一份名为ddmlib-tests.jar。</p>
+<p>2）运行<em>lunch sdk-eng</em> 再执行<em>m sdk</em></p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>&#39;将Android庫上傳到私服&#39;</title>
+    <url>/2019/12/14/Android/%E5%B0%87Android%E5%BA%AB%E4%B8%8A%E5%82%B3%E5%88%B0%E7%A7%81%E6%9C%8D/</url>
+    <content><![CDATA[<p>使用nexus搭建自己的私服，过程记录一下。</p>
+<span id="more"></span>
+<p>nexus官方文档地址：<a href="https://help.sonatype.com/docs">点击这里</a>，这里面有详细的教程。</p>
+<blockquote>
+<p>nexus3下载地址：<br><a href="https://download.sonatype.com/nexus/3/latest-unix.tar.gz">Unix</a>，<br><a href="https://download.sonatype.com/nexus/3/latest-win64.zip">Windows</a><br><a href="https://download.sonatype.com/nexus/3/latest-mac.tgz">MaxOS</a></p>
+</blockquote>
+<h3 id="1-Android发布组件"><a href="#1-Android发布组件" class="headerlink" title="1. Android发布组件"></a>1. Android发布组件</h3><p>按照教程安装好后，进入nexus系统，<br>并创建resipotory,复制地址。</p>
+<blockquote>
+<p><a href="http://192.168.18.33:8081/repository/android/">http://192.168.18.33:8081/repository/android/</a></p>
+</blockquote>
+<p>打开需要上传到仓库的android module中的build.gradle文件写入以下代码,<br>pom对应的属性在nexus中可以看到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply plugin: &#x27;maven&#x27;</span><br><span class="line"></span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            repository(url: &#x27;http://192.168.18.33:8081/repository/android/&#x27;) &#123;</span><br><span class="line">                authentication(userName: &quot;xxxxxxx&quot;, password: &quot;xxxxxxx&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            pom.project &#123;</span><br><span class="line">                version &quot;1.0.0&quot;</span><br><span class="line">                artifactId &quot;libtest&quot;</span><br><span class="line">                groupId &quot;com.test&quot;</span><br><span class="line">                packaging &quot;aar&quot;</span><br><span class="line">                description &quot;test&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenLocal()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用组件"><a href="#2-使用组件" class="headerlink" title="2. 使用组件"></a>2. 使用组件</h3><p>在客户端的根项目build.gradle文件中的allrepositories中写入私服的maven地址,<br>一定要写用户名密码！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">maven&#123;</span><br><span class="line">        url &quot;http://192.168.18.33:8081/repository/android/&quot;</span><br><span class="line">        credentials &#123;</span><br><span class="line">            username &quot;xxxxxx&quot;</span><br><span class="line">            password &quot;xxxxxx&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>implementation “com.test:libtest:1.0.0”</p>
+</blockquote>
+<h3 id="3-问题总结"><a href="#3-问题总结" class="headerlink" title="3. 问题总结"></a>3. 问题总结</h3><ol>
+<li>我在上传组件的时候遇到传不上去的问题，最后是将.gradle-&gt;gradle.properties文件中的地址注释掉就好了。</li>
+<li>在使用组件的时候出现401返回错误，最后是由于没有写credentials用户名和密码导致。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ReaderCardProjects</title>
+    <url>/2022/06/07/3th/ReaderCardProjects/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>React相关笔记</title>
+    <url>/2019/04/27/React/React%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>整理React开发，笔记</p>
+<span id="more"></span>
+<h1 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h1><blockquote>
+<p>什么是JSX语法，就是符合xml规范的JS语法</p>
+</blockquote>
+<h2 id="如何启动jsx语法"><a href="#如何启动jsx语法" class="headerlink" title="如何启动jsx语法"></a>如何启动jsx语法</h2><ul>
+<li>安装babel插件（具体查看github）<ul>
+<li>运行<code>npm i babel-core babel-loader babel-plugin-transform-runtime -D</code></li>
+<li>运行<code>npm i babel-preset-env babel-preset-stage-0 -D</code></li>
+</ul>
+</li>
+<li>安装能够识别jsx语法的包 <code>babel-preset-react</code><ul>
+<li>运行<code>npm i babel-preset-react -D</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h1><h3 id="用到的命令"><a href="#用到的命令" class="headerlink" title="用到的命令"></a>用到的命令</h3><ul>
+<li>弹出调试窗口 <code>adb shell input keyevent 82</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CentOS 7.6修改ssh端口</title>
+    <url>/2020/05/19/Service/CentOS-7-6%E4%BF%AE%E6%94%B9ssh%E7%AB%AF%E5%8F%A3/</url>
+    <content><![CDATA[<p>在CentOS 7.6下修改ssh端口</p>
+<span id="more"></span>
+
+<h4 id="1-修改-x2F-etc-x2F-ssh-x2F-sshd-config-，如下"><a href="#1-修改-x2F-etc-x2F-ssh-x2F-sshd-config-，如下" class="headerlink" title="1. 修改&#x2F;etc&#x2F;ssh&#x2F;sshd_config ，如下"></a>1. 修改&#x2F;etc&#x2F;ssh&#x2F;sshd_config ，如下</h4><p><em>修改端口号</em></p>
+<blockquote>
+<p>Port 12345</p>
+</blockquote>
+<p><em>关闭远程root登陆</em></p>
+<blockquote>
+<p>PermitEmptyPasswords no</p>
+</blockquote>
+<h4 id="2-重启ssh服务"><a href="#2-重启ssh服务" class="headerlink" title="2. 重启ssh服务"></a>2. 重启ssh服务</h4><blockquote>
+<p>sudo systemctl restart sshd</p>
+</blockquote>
+<h4 id="3-防火墙端口查看"><a href="#3-防火墙端口查看" class="headerlink" title="3. 防火墙端口查看"></a>3. 防火墙端口查看</h4><p>查看对应端口防火墙是否设置，没设置提示no，反之yes</p>
+<blockquote>
+<p>sudo firewall-cmd –permanent –query-port&#x3D;12345&#x2F;tcp</p>
+</blockquote>
+<p>添加新端口到防火墙</p>
+<blockquote>
+<p>sudo firewall-cmd –permanent –add-port&#x3D;12345&#x2F;tcp</p>
+</blockquote>
+<p>重启防火墙，提示success表示成功</p>
+<blockquote>
+<p>sudo firewall-cmd –reload</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySql数据库</title>
+    <url>/2019/04/11/Service/MySql%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<p>MySql数据库</p>
+<span id="more"></span>
+
+<h3 id="名称解释"><a href="#名称解释" class="headerlink" title="名称解释"></a>名称解释</h3><p>|名称|简述|<br>|-:-|:–|<br>|关系|一个关系通常说的是一张表|<br>|元组|表中的一行即为一个元组。|<br>|属性|表中的一列即为一个属性；每个属性都有一个名称，称为属性名。|<br>|候选码|表中的每个属性组，它可以唯一确定一个元组。|<br>|主码|一个关系又多个候选码，选定其中一个为主码|<br>|域|属性的取值范围|<br>|分量|元组中的一个属性值|</p>
+<h1 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h1><h3 id="基础语句："><a href="#基础语句：" class="headerlink" title="基础语句："></a>基础语句：</h3><ul>
+<li>select - 从数据库中提取数据</li>
+<li>update - 更新数据库中的数据</li>
+<li>delete - 从数据库中删除数据</li>
+<li>insert into - 向数据库中插入新数据</li>
+<li>create table - 创建新表</li>
+<li>alert table - 修改数据库表</li>
+<li>drop table - 删除表</li>
+<li>create index - 创建索引</li>
+<li>drop index - 删除索引</li>
+</ul>
+<h3 id="常用语句："><a href="#常用语句：" class="headerlink" title="常用语句："></a>常用语句：</h3><p><code>show databases</code> 显示所有数据库 。<br><code>use database_name</code>  进入某个数据库 ， databases_name 为某个数据库名。<br><code>select * from table_name</code> 查询某个表的所有数据 ，table_name 为表名。<br><code>create database database_name</code> 创建数据库，其中database_name 为数据库名称<br><code>desc table_name</code> 查看一个表的结构<br><code>show create table table_name</code> 查看创建表的SQL语句<br><code>exit</code> 退出数据库 (仅仅断开了客户端和服务器的连接)</p>
+<h3 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h3><h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><ul>
+<li><code>OR</code>： 或者</li>
+<li><code>AND</code>: 并且</li>
+<li><code>NOT</code>：不符合该条件</li>
+<li><code>=</code>：判断相等</li>
+<li><code>&gt;</code>：判断大于</li>
+<li><code>&gt;=</code>：判断大于或者等于</li>
+<li><code>&lt;</code>：判断小于</li>
+<li><code>&lt;=</code>：判断小于或者等于</li>
+<li><code>&lt;&gt;</code>：判断不相等</li>
+<li><code>LIKE</code>：判断相似</li>
+</ul>
+<p>练习：</p>
+<ol>
+<li>where 关键字后面的 score &gt;&#x3D; 80 是条件。<br><code>select * from students where score &gt;= 80;</code></li>
+<li>条件表达式用&lt;条件1&gt; AND &lt;条件2&gt;表达满足条件1并且满足条件2.符合条件“分数在80分或以上”，并且还符合条件“男生” , 就可以写：<br><code>select * from students where score &gt;= 80 AND gender = &#39;M&#39;;</code></li>
+<li>条件表达式用&lt;条件1&gt; OR &lt;条件2&gt;表达满足条件1或者满足条件2。分数在80分或以上”或者“男生” , 可以写：<br><code>select * from students where score &gt;= 80 OR gender = &#39;M&#39;;</code></li>
+<li>不是2班的学生<br><code>select * from students where NOT class_id = 2;</code><br>也可以写成：<br><code>select * from students where class_id &lt;&gt; 2;</code></li>
+<li>查询分数在60分(含)~90分(含)之间的学生<br><code>select * from students where score &gt;= 60 AND score &lt;= 90;</code><br><code>select * from students where score between 60 and 90;</code></li>
+</ol>
+<h4 id="投影查询"><a href="#投影查询" class="headerlink" title="投影查询"></a>投影查询</h4><p>用<code>SELECT 列1, 列2, 列3 FROM ...</code>，让结果集仅包含指定列。这种操作称为投影查询。<br>还可以给每一个列名起别名，它的语法是：<code>SELECT 列1 别名1, 列2 别名2, 列3 别名3 FROM...</code><br>练习：</p>
+<ol>
+<li>从students表中返回id、score和name这三列<br><code>select id,score,name from students;</code></li>
+<li>SELECT语句将列名score重命名为points，而id和name列名保持不变<br><code>select id,score points,name from students;</code></li>
+</ol>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><p>关键字：ORDER BY<br>默认是正序：ASC<br>如果有WHERE子句，那么ORDER BY子句要放到WHERE子句后面。<br>练习：</p>
+<ol>
+<li>按照成绩从低到高进行排序。正序 ASC<br><code>select id,score,name from students order by score;</code></li>
+<li>按照成绩从高到低进行排序。倒序 DESC<br><code>select id,score,name from students order by score desc;</code></li>
+<li>先按score列倒序，如果有相同分数的，再按gender列排序<br><code>select id ,score ,name,gender from students order by score desc , gender;</code></li>
+<li>查询一班的学生成绩，并按照倒序排序<br><code>select * from students where class_id = 1 order by score desc;</code></li>
+</ol>
+<h4 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h4><p>|函数|说明|<br>|-:-|-:-|<br>|COUNT|统计数量|<br>|SUM|计算某一列的合计值，该列必须为数值类型|<br>|AVG|计算某一列的平均值，该列必须为数值类型|<br>|MAX|计算某一列的最大值|<br>|MIN|计算某一列的最小值|</p>
+<p>注意：如果聚合查询的where条件没有匹配到任何行，COUNT()会返回0，<br>而SUM()、AVG()、MAX()、MIN()会返回NULL;</p>
+<p>练习：</p>
+<ol>
+<li>查询students表中的一共有多少记录<br><code>select COUNT(*) from students;</code><br>可以给列名起个别名<br><code>select COUNT(*) num from students;</code></li>
+<li>统计有多少男生<br><code>select COUNT(*) boys from students where gender = &#39;M&#39;;</code></li>
+<li>统计男生的平均成绩<br><code>select AVG(score)  from students where gender = &#39;M&#39;;</code></li>
+</ol>
+<p>分组聚合<br>练习：</p>
+<ol>
+<li>统计各班级人数<br><code>select class_id,COUNT(*) num from students group by class_id;</code></li>
+<li>统计各班的男生和女生人数<br><code>select class_id,gender,COUNT(*) num from students group by class_id,gender;</code></li>
+<li>用一条SELECT查询查出每个班级的平均分<br><code>select class_id,AVG(score) from students group by class_id;</code></li>
+<li>用一条SELECT查询查出每个班级的平均分 保留两位小数<br><code>select class_id,round(AVG(score),2) from students group by class_id;</code></li>
+<li>查出每个班级男生和女生的平均分<br><code>select class_id,gender,round(avg(score),2) from students group by class_id,gender;</code></li>
+</ol>
+<h4 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h4><p>内连接：</p>
+<ol>
+<li>先确定主表，仍然使用<code>from &lt;表1&gt;</code>的语法;</li>
+<li>再确定需要连接的表，使用<code>inner join &lt;表2&gt;</code>的语法；</li>
+<li>然后确定连接条件，使用<code>ON &lt;条件...&gt;</code>，这里的条件是<code>students.class_id = classes.id</code>，表示students表的class_id列与classes表的id列相同的行需要连接；</li>
+<li>可选：加上where子句，order by 等子句。</li>
+</ol>
+<p><img src="/images/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E7%9B%B8%E5%85%B3%E5%9B%BE.jpg"></p>
+<p>练习：</p>
+<ol>
+<li>把每位学生对应的班级名称列出来.<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select s.id,s.name,s.class_id,c.name class_name,s.gender,s.score </span><br><span class="line">from students s </span><br><span class="line">inner join classes c </span><br><span class="line">ON s.class_id = c.id;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h3 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h3><p>语法: <code>INSERT INTO &lt;表名&gt; (字段1, 字段2, ...) VALUES (值1, 值2, ...);</code><br>也可以一次性添加多条记录，只需在<code>VALUES</code>子句中指定多个记录值，每个记录用括号</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO students (class_id, name, gender, score) VALUES</span><br><span class="line">  (1, &#x27;大宝&#x27;, &#x27;M&#x27;, 87),</span><br><span class="line">  (2, &#x27;二宝&#x27;, &#x27;M&#x27;, 81);</span><br></pre></td></tr></table></figure>
+
+<p>练习：</p>
+<ol>
+<li>向students表插入一条新记录<br><code>INSERT INTO test_database.students (id, class_id, name, gender, score) VALUES (11, 3, &#39;小丽2&#39;, &#39;M&#39;, 85);</code></li>
+</ol>
+<h3 id="更新语句"><a href="#更新语句" class="headerlink" title="更新语句"></a>更新语句</h3><p>语法:<br><code>UPDATE &lt;表名&gt; SET 字段1=值1, 字段2=值2, ... WHERE ...;</code></p>
+<p>练习：</p>
+<ol>
+<li>更新id为1的学生的姓名和分数两个字段<br><code>update students set name =&#39;大牛&#39;,score=66 where id = 1;</code></li>
+<li>更新id &#x3D; 5,6,7的记录<br><code>update students set name =&#39;大牛&#39;,score=66 where id &gt;=5 AND id &lt;=7;</code></li>
+<li>把所有80分以下的同学的成绩加10分<br><code>update students set score = score + 10 where score &lt; 80;</code><br>注意:执行这句遇到了 1175 问题，执行 <code>SET SQL_SAFE_UPDATES = 0</code>解决;</li>
+</ol>
+<p>注意：UPDATE语句可以没有WHERE条件,假设执行<code>update students SET score=60;</code>,会使整个表所有的记录都被更新。最好先用select语句来测试where条件是否筛选出了期望的记录，然后再用update更新。</p>
+<h3 id="删除语句"><a href="#删除语句" class="headerlink" title="删除语句"></a>删除语句</h3><p>语法：<br><code>DELETE FROM &lt;表名&gt; WHERE ...;</code></p>
+<p>练习：</p>
+<ol>
+<li>删除id&#x3D;1的记录<br><code>delete from students where id=1;</code></li>
+</ol>
+<p>注意：delete和update类似，不带where条件也可以执行。如果执行<code>delete from students</code>会删除整个表的数据</p>
+<hr>
+<p>笔记参考</p>
+<blockquote>
+<p><a href="http://www.runoob.com/sql/sql-syntax.html">菜鸟教程</a><br><a href="https://www.liaoxuefeng.com/wiki/001508284671805d39d23243d884b8b99f440bfae87b0f4000/001509192416135a120ac09e03e4f94be1cf73a5da37e7d000">雪峰老师</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NGINX相关笔记</title>
+    <url>/2019/04/12/Service/NGINX%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>整理Nginx安装，常用命令，使用，配置。</p>
+<span id="more"></span>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>创建&#x2F;etc&#x2F;yum.repos.d&#x2F;nginx.repo<br><code>sudo vim /etc/yum.repos.d/nginx.repo</code></li>
+<li><a href="http://nginx.org/en/linux_packages.html">填写内容</a><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name=nginx stable repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br><span class="line"></span><br><span class="line">[nginx-mainline]</span><br><span class="line">name=nginx mainline repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=https://nginx.org/keys/nginx_signing.key</span><br></pre></td></tr></table></figure></li>
+<li>使用mainline nginx的包<br><code>sudo yum-config-manager --enable nginx-mainline</code></li>
+<li>安装 sudo yum install nginx</li>
+<li>测试是否安装成功<br><code>nginx -v</code>  查看版本<br><code>nginx -t</code><br>返回：nginx: configuration file &#x2F;etc&#x2F;nginx&#x2F;nginx.conf test is successful</li>
+</ol>
+<p><code>sudo nginx </code> 启动nginx<br>发现错误：nginx: [emerg] still could not bind()<br>原因：80端口被占用<br>解决：</p>
+<ol>
+<li><code>sudo netstat -anp | grep 80</code> 查看80端口使用情况</li>
+</ol>
+]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu1404安装python3.8</title>
+    <url>/2020/04/13/Service/ubuntu1404%E5%AE%89%E8%A3%85python3.8/</url>
+    <content><![CDATA[<p>ubuntu1404 install python3.8</p>
+<span id="more"></span>
+
+<p>下载解压：</p>
+<blockquote>
+<p>wget <a href="https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz">https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz</a></p>
+<p>tar -zxvf Python-3.8.2.tgz</p>
+</blockquote>
+<p>编译</p>
+<blockquote>
+<p>cd Python3.8.2</p>
+<p>.&#x2F;configure  </p>
+<p>sudo make</p>
+<p>sudo make install</p>
+</blockquote>
+<p>更换ubuntu Python版本</p>
+<p>添加</p>
+<blockquote>
+<p>sudo update-alternatives –install &#x2F;usr&#x2F;bin&#x2F;python python &#x2F;usr&#x2F;bin&#x2F;python3.8 3  </p>
+</blockquote>
+<p>显示列表</p>
+<blockquote>
+<p>sudo update-alternatives –config python</p>
+</blockquote>
+<p>移除</p>
+<blockquote>
+<p>sudo update-alternatives –remove python &#x2F;usr&#x2F;bin&#x2F;python3</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu1404用pyenv管理python版本</title>
+    <url>/2020/04/13/Service/ubuntu1404%E7%94%A8pyenv%E7%AE%A1%E7%90%86python%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<p>ubuntu1404 安装 pyenv 管理python版本</p>
+<span id="more"></span>
+
+<p>开源地址：<a href="https://github.com/pyenv/pyenv">https://github.com/pyenv/pyenv</a></p>
+<h5 id="不同系统参考-Common-build-problems-安装之前的必备工具"><a href="#不同系统参考-Common-build-problems-安装之前的必备工具" class="headerlink" title="不同系统参考 Common build problems 安装之前的必备工具"></a>不同系统参考 <a href="https://github.com/pyenv/pyenv/wiki/Common-build-problems">Common build problems</a> 安装之前的必备工具</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#Ubuntu/Debian</span><br><span class="line">sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev \</span><br><span class="line">libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \</span><br><span class="line">xz-utils tk-dev libffi-dev liblzma-dev python-openssl git</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="手动安装pyenv"><a href="#手动安装pyenv" class="headerlink" title="手动安装pyenv"></a>手动安装pyenv</h5> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/pyenv/pyenv.git ~/.pyenv</span><br><span class="line">echo &#x27;export PYENV_ROOT=&quot;$HOME/.pyenv&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">echo &#x27;export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">echo &#x27;eval &quot;$(pyenv init -)&quot;&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br><span class="line">exec &quot;$SHELL&quot; //重启终端</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看可安装Python版本"><a href="#查看可安装Python版本" class="headerlink" title="查看可安装Python版本"></a>查看可安装Python版本</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pyenv install -l</span><br></pre></td></tr></table></figure>
+<h5 id="安装-x2F-卸载python"><a href="#安装-x2F-卸载python" class="headerlink" title="安装&#x2F;卸载python"></a>安装&#x2F;卸载python</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pyenv install -v 3.7.2</span><br><span class="line"></span><br><span class="line">pyenv uninstall 3.7.2</span><br></pre></td></tr></table></figure>
+<h5 id="python切换"><a href="#python切换" class="headerlink" title="python切换"></a>python切换</h5> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pyenv global 3.7.2</span><br><span class="line">pyenv local 3.7.2  # 设置Python本地版本</span><br></pre></td></tr></table></figure>
+<h5 id="遇到问题："><a href="#遇到问题：" class="headerlink" title="遇到问题："></a>遇到问题：</h5><ol>
+<li>ERROR: The Python ssl extension was not compiled. Missing the OpenSSL lib</li>
+</ol>
+<p><a href="https://github.com/pyenv/pyenv/wiki/Common-build-problems">pyenv Wiki中的解决方法</a></p>
+<p><a href="https://help.dreamhost.com/hc/en-us/articles/360001435926-Installing-OpenSSL-locally-under-your-username">安装openssl</a></p>
+<ol start="2">
+<li>ssl.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED]<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo update-ca-certificates --fresh</span><br><span class="line">export SSL_CERT_DIR=/etc/ssl/certs</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>服务器端相关的操作手册</title>
+    <url>/2019/04/11/Service/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<p>记录服务器端常用的安装与命令</p>
+<span id="more"></span>
+
+<h4 id="Mysql数据库安装操作-CentOS7"><a href="#Mysql数据库安装操作-CentOS7" class="headerlink" title="Mysql数据库安装操作(CentOS7)"></a>Mysql数据库安装操作(CentOS7)</h4><h5 id="1-需要去官网下载Yum资源包，下载地址"><a href="#1-需要去官网下载Yum资源包，下载地址" class="headerlink" title="1. 需要去官网下载Yum资源包，下载地址"></a>1. 需要去官网下载Yum资源包，<a href="https://dev.mysql.com/downloads/repo/yum/">下载地址</a></h5><h5 id="2-找到-rpm后缀的文件名"><a href="#2-找到-rpm后缀的文件名" class="headerlink" title="2. 找到.rpm后缀的文件名"></a>2. 找到.rpm后缀的文件名</h5><p>(mysql80-community-release-el7-2.noarch.rpm)。<br>完整地址就是：<a href="http://repo.mysql.commysql80-community-release-el7-2.noarch.rpm/">http://repo.mysql.commysql80-community-release-el7-2.noarch.rpm</a></p>
+<h5 id="3-安装命令"><a href="#3-安装命令" class="headerlink" title="3. 安装命令"></a>3. 安装命令</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget http://repo.mysql.commysql80-community-release-el7-2.noarch.rpm</span><br><span class="line">rpm -ivh mysql80-community-release-el7-2.noarch.rpm</span><br><span class="line">yum update</span><br><span class="line">yum install mysql-server</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-访问数据库"><a href="#4-访问数据库" class="headerlink" title="4. 访问数据库"></a>4. 访问数据库</h5><ul>
+<li>远程访问数据库</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -h hostname -P port -u username -p</span><br></pre></td></tr></table></figure>
+
+<p>请将 hostname 替换为目标 MySQL 数据库实例的内网 IP 地址，将 username 替换为默认的用户名 root，<br>port是端口号，并在提示 Enter password：后输出 root 账户对应的密码。</p>
+<ul>
+<li>本地访问数据库</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p </span><br></pre></td></tr></table></figure>
+
+<p>并在提示 Enter password：后输出 root 账户对应的密码。</p>
+<h5 id="5-基础操作命令"><a href="#5-基础操作命令" class="headerlink" title="5. 基础操作命令"></a>5. <a href="http://linux.vbird.org/linux_basic/0160startlinux.php#start_startx">基础操作命令</a></h5><ul>
+<li><p>修改密码</p>
+<blockquote>
+<p>passwd 用户名</p>
+</blockquote>
+</li>
+<li><p>登出: exit</p>
+</li>
+<li><p>显示日期：date</p>
+<blockquote>
+<p>date +%Y&#x2F;%m&#x2F;%d<br>date +%H:%M</p>
+</blockquote>
+</li>
+<li><p>日历：cal</p>
+<blockquote>
+<p> cal [month] [year]</p>
+</blockquote>
+</li>
+<li><p>计算器： bc</p>
+</li>
+<li><p>翻页 ： [Shift]+[Page Down] </p>
+</li>
+<li><p>关机 ：shutdown</p>
+</li>
+</ul>
+<blockquote>
+<p>[root@study ~]# shutdown -h now<br>立刻關機，其中 now 相當於時間為 0 的狀態<br>[root@study ~]# shutdown -h 20:25<br>系統在今天的 20:25 分會關機，若在21:25才下達此指令，則隔天才關機<br>[root@study ~]# shutdown -h +10<br>系統再過十分鐘後自動關機<br>[root@study ~]# shutdown -r now<br>系統立刻重新開機<br>[root@study ~]# shutdown -r +30 ‘The system will reboot’<br>再過三十分鐘系統會重新開機，並顯示後面的訊息給所有在線上的使用者<br>[root@study ~]# shutdown -k now ‘This system will reboot’<br>僅發出警告信件的參數！系統並不會關機啦！嚇唬人！</p>
+</blockquote>
+<ul>
+<li>管理工具 systemctl 关机</li>
+</ul>
+<blockquote>
+<p>[root@study ~]# systemctl [指令]<br>指令項目包括如下：<br>halt       進入系統停止的模式，螢幕可能會保留一些訊息，這與你的電源管理模式有關<br>poweroff   進入系統關機模式，直接關機沒有提供電力喔！<br>reboot     直接重新開機<br>suspend    進入休眠模式<br>[root@study ~]# systemctl reboot    # 系統重新開機<br>[root@study ~]# systemctl poweroff  # 系統關機</p>
+</blockquote>
+<h5 id="6-账户管理"><a href="#6-账户管理" class="headerlink" title="6. 账户管理"></a>6. <a href="http://linux.vbird.org/linux_basic/0410accountmanager.php">账户管理</a></h5><h4 id="nvm安装"><a href="#nvm安装" class="headerlink" title="nvm安装"></a>nvm安装</h4><ol>
+<li><p><code>cd ~/</code> 进入根目录 执行：<code>git clone https://github.com/creationix/nvm.git .nvm</code></p>
+</li>
+<li><p><code>cd ~/.nvm</code> 执行：<code>git checkout v0.34.0</code> 。 版本号自己选择</p>
+</li>
+<li><p>在.bash_profile最后一行添加</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export NVM_DIR=~/.nvm</span><br><span class="line">source ~/.nvm/nvm.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>最后执行 <code>source .bash_profile</code></p>
+</li>
+<li><p>安装pm2 <code>npm install pm2 -g</code></p>
+</li>
+</ol>
+<h4 id="CentOs安装redis"><a href="#CentOs安装redis" class="headerlink" title="CentOs安装redis"></a>CentOs安装redis</h4><ol>
+<li>官网上给的命令<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.4.tar.gz</span><br><span class="line">tar xzf redis-5.0.4.tar.gz</span><br><span class="line">cd redis-5.0.4</span><br><span class="line">make</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>我遇到的问题:</p>
+<ol>
+<li><code>Error jemalloc/jemalloc.h: No such file or directory when making Redis</code><br> 解决：执行 <code>make distclean</code> 清除早期编译的文件</li>
+<li><code>make cc Command not found</code><br> 解决：系统没有安装gcc，执行<code>sudo yum install gcc</code></li>
+</ol>
+<p> 用到的命令：<br> <code>mv redis-5.0.4.tar.gz /usr/local/redis</code> 移动并且重命名</p>
+]]></content>
+      <categories>
+        <category>System</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>&#39;如何进行远程连接&#39;</title>
+    <url>/2018/12/17/System/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<blockquote><p>记录一下远程连接的操作</p>
+</blockquote>
+<span id="more"></span>
+<blockquote>
+<h4 id="两台Window-PC之间的远程连接"><a href="#两台Window-PC之间的远程连接" class="headerlink" title="两台Window PC之间的远程连接"></a>两台Window PC之间的远程连接</h4><p>假设需要被远程控制的计算机称为A，反之为B</p>
+</blockquote>
+<blockquote>
+<h6 id="前提条件："><a href="#前提条件：" class="headerlink" title="前提条件："></a>前提条件：</h6><ul>
+<li>必须要有网络连接，并且在局域网内。</li>
+<li>如果没有用户密码，需要添加用户密码。</li>
+</ul>
+</blockquote>
+<blockquote>
+<h6 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h6><ul>
+<li>A打开控制面板，找到远程桌面，启动远程桌面（这里使用的是window10系统，其他系统可以查一下远程桌面在哪里）</li>
+</ul>
+</blockquote>
+<p><img src="/images/1_0_%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A501.jpg" alt="1-1"></p>
+<blockquote>
+<ul>
+<li>A给B提供Ip号码，win+R 输入 cmd ，继续输入 ipconfig 选择目前在用的网络，复制ip</li>
+<li>A给B提供用户名和密码，在控制面板-账户中设置</li>
+<li>B打开远程控制软件 添加 - 输入A提供的ip和用户名密码，选择连接</li>
+</ul>
+</blockquote>
+<p><img src="/images/1_0_%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A502.jpg" alt="1-2"></p>
+<blockquote><footer><strong>@参考</strong><cite><a href="https://support.microsoft.com/zh-cn/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection">support.microsoft.com/zh-cn/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection</a></cite></footer></blockquote>
+
+<h4 id="Mac与Window-PC之间的远程连接"><a href="#Mac与Window-PC之间的远程连接" class="headerlink" title="Mac与Window PC之间的远程连接"></a>Mac与Window PC之间的远程连接</h4><blockquote><p>Mac上使用Mac远程连接版本除了需要下载Microsoft远程桌面软件以外，思路和Window &amp; Window 的连接一样</p>
+</blockquote>]]></content>
+      <categories>
+        <category>system</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo常用命令</title>
+    <url>/2021/07/18/Tool/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>很长时间没用hexo，容易忘记常用的命令。写这篇文章来记录下。</p>
+<span id="more"></span>
+
+<p><a href="https://hexo.io/zh-cn/docs/">官网地址</a></p>
+<h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><h5 id="init-建站"><a href="#init-建站" class="headerlink" title="init (建站)"></a>init (建站)</h5><blockquote>
+<p>hexo init [folder]</p>
+</blockquote>
+<h5 id="new（新建文章）"><a href="#new（新建文章）" class="headerlink" title="new（新建文章）"></a>new（新建文章）</h5><blockquote>
+<p>hexo  new  [layout]  <titile></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-p, – path</td>
+<td>自定义新文章的路径</td>
+</tr>
+<tr>
+<td>-r , –replace</td>
+<td>存在同名文章，将其替换</td>
+</tr>
+<tr>
+<td>-s , –slug</td>
+<td>文章的Slug，作为新文章的文件名和发布后的URL</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>hexo new page –path about&#x2F;me “About me”</p>
+</blockquote>
+<p>以上命令会创建一个<code>source/about/me.md</code>文件，同时Front Matter中的title为”About me”</p>
+<blockquote>
+<p>hexo new page –path about&#x2F;me</p>
+</blockquote>
+<p>以上命令会创建<code>source/_posts/about/me.md</code>,同时me.md的Front Matter中的title为<code>&quot;page&quot;</code></p>
+<h5 id="generate-生成静态文件"><a href="#generate-生成静态文件" class="headerlink" title="generate(生成静态文件)"></a>generate(生成静态文件)</h5><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-d,–deploy</td>
+<td>文件生成后立即部署网站</td>
+</tr>
+<tr>
+<td>-w, –watch</td>
+<td>监视文件变动</td>
+</tr>
+<tr>
+<td>-b, –bail</td>
+<td>生成过程中如果发生任何未处理的异常则抛出异常</td>
+</tr>
+<tr>
+<td>-f,–force</td>
+<td>强制生成文件，如果public目录存在，那么hexo g只会重新生成改动的文件。该参数的效果接近hexo clean &amp;&amp; hexo generate</td>
+</tr>
+<tr>
+<td>-c , –concurrency</td>
+<td>最大同时生成文件的数量，默认无限制</td>
+</tr>
+</tbody></table>
+<p><strong>简写</strong></p>
+<blockquote>
+<p>hexo g</p>
+</blockquote>
+<h5 id="publish-发表草稿"><a href="#publish-发表草稿" class="headerlink" title="publish(发表草稿)"></a>publish(发表草稿)</h5><blockquote>
+<p>hexo publish [layout] <filename></p>
+</blockquote>
+<h5 id="server"><a href="#server" class="headerlink" title="server"></a>server</h5><blockquote>
+<p>hexo s &amp;&amp; hexo server</p>
+</blockquote>
+<p>启动服务器。访问地址：<a href="http://localhost:4000/">http://localhost:4000/</a></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-p , –port</td>
+<td>重设端口</td>
+</tr>
+<tr>
+<td>-s,–static</td>
+<td>只使用静态文件</td>
+</tr>
+<tr>
+<td>-l, –log</td>
+<td>启动日记记录</td>
+</tr>
+</tbody></table>
+<h5 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h5><blockquote>
+<p>hexo d  &amp;&amp; hexo deploy</p>
+</blockquote>
+<h5 id="render-（渲染文件）"><a href="#render-（渲染文件）" class="headerlink" title="render （渲染文件）"></a>render （渲染文件）</h5><blockquote>
+<p>hexo render <file1> [file2]…</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-o,–output</td>
+<td>设置输出路径</td>
+</tr>
+</tbody></table>
+<h5 id="migrate-从其他博客系统-迁移内容-https-hexo-io-zh-cn-docs-migration"><a href="#migrate-从其他博客系统-迁移内容-https-hexo-io-zh-cn-docs-migration" class="headerlink" title="migrate 从其他博客系统 (迁移内容)[https://hexo.io/zh-cn/docs/migration]"></a>migrate 从其他博客系统 (迁移内容)[<a href="https://hexo.io/zh-cn/docs/migration]">https://hexo.io/zh-cn/docs/migration]</a></h5><h5 id="clean-清除缓存文件db-json-和已生成的静态文件-public"><a href="#clean-清除缓存文件db-json-和已生成的静态文件-public" class="headerlink" title="clean (清除缓存文件db.json)和已生成的静态文件(public)"></a>clean (清除缓存文件<code>db.json</code>)和已生成的静态文件(public)</h5><blockquote>
+<p>hexo clean</p>
+</blockquote>
+<h5 id="list-列出网站资料"><a href="#list-列出网站资料" class="headerlink" title="list 列出网站资料"></a>list 列出网站资料</h5><blockquote>
+<p>hexo list <type></p>
+</blockquote>
+<h5 id="version-显示hexo版本"><a href="#version-显示hexo版本" class="headerlink" title="version 显示hexo版本"></a>version 显示hexo版本</h5><blockquote>
+<p>hexo version</p>
+</blockquote>
+<p>以上的命令最常用的操作：</p>
+<ul>
+<li><code>new</code></li>
+<li><code>hexo g -d</code>重新构建文件，并上传到服务器</li>
+<li><code>hexo s</code> 在本地打开网站</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>markdown基础语法</title>
+    <url>/2019/04/04/Tool/markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<blockquote>
+<p>Markdown时一种存文本格式的标记语言。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h2><ul>
+<li>示例<blockquote>
+<p>#这是一级标题<br>##这是二级标题<br>###这是三级标题<br>####这是四级标题<br>#####这是五级标题<br>######这是六级标题</p>
+</blockquote>
+</li>
+<li>效果：<blockquote>
+<h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><h4 id="这是四级标题"><a href="#这是四级标题" class="headerlink" title="这是四级标题"></a>这是四级标题</h4><h5 id="这是五级标题"><a href="#这是五级标题" class="headerlink" title="这是五级标题"></a>这是五级标题</h5><h6 id="这是六级标题"><a href="#这是六级标题" class="headerlink" title="这是六级标题"></a>这是六级标题</h6></blockquote>
+</li>
+</ul>
+<h2 id="2-字体"><a href="#2-字体" class="headerlink" title="2. 字体"></a>2. 字体</h2><p><code>** 这是要加粗的文字 **</code>&amp;nbsp;&amp;nbsp;&amp;nbsp;效果：<strong>这是要加粗的文字</strong><br><code> * 这是要倾斜的文字 *</code> &amp;nbsp;&amp;nbsp;&amp;nbsp;效果：<em>这是要倾斜的文字</em><br><code>***  这是要斜体加粗的文字 ***</code>&amp;nbsp;&amp;nbsp;效果：<em><strong>这是要斜体加粗的文字</strong></em><br><code>~~这是加删除线的文字~~</code>&amp;nbsp;&amp;nbsp;&amp;nbsp;效果：<del>这是加删除线的文字</del></p>
+<h2 id="3-引用"><a href="#3-引用" class="headerlink" title="3.引用"></a>3.引用</h2><p><code>在引用的文字前加&gt; ，引用可以嵌套&gt;&gt;&gt;</code>&amp;nbsp;&amp;nbsp;<br>效果：</p>
+<blockquote>
+<p>这是引用的内容</p>
+<blockquote>
+<p>这是两个引用的内容</p>
+<blockquote>
+<p>这是三个引用的内容</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="4-分割线"><a href="#4-分割线" class="headerlink" title="4.分割线"></a>4.分割线</h3><p><code>使用 --- | *** 都可以</code><br>效果：</p>
+<hr>
+<hr>
+<h3 id="5-图片"><a href="#5-图片" class="headerlink" title="5.图片"></a>5.图片</h3><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![图片alt](图片地址 &quot;图片标题&quot;)</span><br><span class="line">图片alt：鼠标移到图片上显示的提示内容</span><br><span class="line">图片标题：显示在图片下方的文字</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">![AndroidLogo](https://timgsa.baidu.com/timg?image&amp;quality=80&amp;</span><br><span class="line">size=b9999_10000&amp;sec=1554357642796&amp;di=6d1985975e76c97c028f89b596baeb99&amp;imgtype=0&amp;</span><br><span class="line">src=http%3A%2F%2Fp0.qhimg.com%2Ft01633a3783e337f6f7.jpg%3Fsize%3D3200x1800 &quot;Android&quot;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1554357642796&di=6d1985975e76c97c028f89b596baeb99&imgtype=0&src=http://p0.qhimg.com/t01633a3783e337f6f7.jpg?size=3200x1800" alt="AndroidLogo" title="Android"></p>
+<h3 id="6-列表"><a href="#6-列表" class="headerlink" title="6. 列表"></a>6. 列表</h3><p>无序列表用 - + * 任何一种都可以</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- 列表内容</span><br><span class="line">+ 列表内容</span><br><span class="line">* 列表内容</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<ul>
+<li>列表内容</li>
+</ul>
+<ul>
+<li>列表内容</li>
+</ul>
+<ul>
+<li>列表内容</li>
+</ul>
+<hr>
+<p>有序列表 用数字加点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 列表内容</span><br><span class="line">2. 列表内容</span><br><span class="line">3. 列表内容</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<ol>
+<li>列表内容</li>
+<li>列表内容</li>
+<li>列表内容</li>
+</ol>
+<h3 id="7-超链接"><a href="#7-超链接" class="headerlink" title="7. 超链接"></a>7. 超链接</h3><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[超链接名](超链接地址 &quot;超链接标题&quot;)</span><br><span class="line">标题可加可不加</span><br><span class="line">示例：</span><br><span class="line">[简书](http://jianshu.com)</span><br><span class="line">[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<ul>
+<li><a href="http://jianshu.com/">简书</a></li>
+<li><a href="http://baidu.com/">百度</a></li>
+</ul>
+<h3 id="8-表格"><a href="#8-表格" class="headerlink" title="8. 表格"></a>8. 表格</h3><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|表头|表头|表头|</span><br><span class="line">|--|:--:|---:|</span><br><span class="line">|内容|内容|内容|</span><br><span class="line">|内容|内容|内容|</span><br><span class="line"></span><br><span class="line">:--: 居中</span><br><span class="line">:--  左对齐</span><br><span class="line">--:  右对齐</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th align="center">技能</th>
+<th align="right">排行</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>刘备</td>
+<td align="center">哭</td>
+<td align="right">大哥</td>
+</tr>
+<tr>
+<td>关羽</td>
+<td align="center">打</td>
+<td align="right">二哥</td>
+</tr>
+<tr>
+<td>张飞</td>
+<td align="center">骂</td>
+<td align="right">三弟</td>
+</tr>
+</tbody></table>
+<h3 id="9-代码"><a href="#9-代码" class="headerlink" title="9.代码"></a>9.代码</h3><p>语法：<br>单行代码：代码之间分别用一个反引号包起来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">`代码内容`</span><br></pre></td></tr></table></figure>
+<p>效果：<br><code>public static void main(String[] args)</code></p>
+<p>语法：<br>多行代码 三个点包着<br>效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function()&#123;</span><br><span class="line">    console.log(&#x27;我是JavaScript&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>参考文章：<a href="https://www.jianshu.com/p/191d1e21f7ed">Markdown基础语法</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+</search>
