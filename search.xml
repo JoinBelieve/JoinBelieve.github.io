@@ -20,36 +20,6 @@
       </tags>
   </entry>
   <entry>
-    <title>React相关笔记</title>
-    <url>/2019/04/27/React/React%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>整理React开发，笔记</p>
-<span id="more"></span>
-<h1 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h1><blockquote>
-<p>什么是JSX语法，就是符合xml规范的JS语法</p>
-</blockquote>
-<h2 id="如何启动jsx语法"><a href="#如何启动jsx语法" class="headerlink" title="如何启动jsx语法"></a>如何启动jsx语法</h2><ul>
-<li>安装babel插件（具体查看github）<ul>
-<li>运行<code>npm i babel-core babel-loader babel-plugin-transform-runtime -D</code></li>
-<li>运行<code>npm i babel-preset-env babel-preset-stage-0 -D</code></li>
-</ul>
-</li>
-<li>安装能够识别jsx语法的包 <code>babel-preset-react</code><ul>
-<li>运行<code>npm i babel-preset-react -D</code></li>
-</ul>
-</li>
-</ul>
-<h1 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h1><h3 id="用到的命令"><a href="#用到的命令" class="headerlink" title="用到的命令"></a>用到的命令</h3><ul>
-<li>弹出调试窗口 <code>adb shell input keyevent 82</code></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AS出现Default Activity not found怎么解决</title>
     <url>/2018/12/27/Android/ActivityNotFound/</url>
     <content><![CDATA[<blockquote>
@@ -142,6 +112,39 @@
 <li>将过滤器应用于图像并且保存图像</li>
 <li>定期将本地数据于网络同步</li>
 </ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>&#39;将Android庫上傳到私服&#39;</title>
+    <url>/2019/12/14/Android/%E5%B0%87Android%E5%BA%AB%E4%B8%8A%E5%82%B3%E5%88%B0%E7%A7%81%E6%9C%8D/</url>
+    <content><![CDATA[<p>使用nexus搭建自己的私服，过程记录一下。</p>
+<span id="more"></span>
+<p>nexus官方文档地址：<a href="https://help.sonatype.com/docs">点击这里</a>，这里面有详细的教程。</p>
+<blockquote>
+<p>nexus3下载地址：<br><a href="https://download.sonatype.com/nexus/3/latest-unix.tar.gz">Unix</a>，<br><a href="https://download.sonatype.com/nexus/3/latest-win64.zip">Windows</a><br><a href="https://download.sonatype.com/nexus/3/latest-mac.tgz">MaxOS</a></p>
+</blockquote>
+<h3 id="1-Android发布组件"><a href="#1-Android发布组件" class="headerlink" title="1. Android发布组件"></a>1. Android发布组件</h3><p>按照教程安装好后，进入nexus系统，<br>并创建resipotory,复制地址。</p>
+<blockquote>
+<p><a href="http://192.168.18.33:8081/repository/android/">http://192.168.18.33:8081/repository/android/</a></p>
+</blockquote>
+<p>打开需要上传到仓库的android module中的build.gradle文件写入以下代码,<br>pom对应的属性在nexus中可以看到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply plugin: &#x27;maven&#x27;</span><br><span class="line"></span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            repository(url: &#x27;http://192.168.18.33:8081/repository/android/&#x27;) &#123;</span><br><span class="line">                authentication(userName: &quot;xxxxxxx&quot;, password: &quot;xxxxxxx&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            pom.project &#123;</span><br><span class="line">                version &quot;1.0.0&quot;</span><br><span class="line">                artifactId &quot;libtest&quot;</span><br><span class="line">                groupId &quot;com.test&quot;</span><br><span class="line">                packaging &quot;aar&quot;</span><br><span class="line">                description &quot;test&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenLocal()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用组件"><a href="#2-使用组件" class="headerlink" title="2. 使用组件"></a>2. 使用组件</h3><p>在客户端的根项目build.gradle文件中的allrepositories中写入私服的maven地址,<br>一定要写用户名密码！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">maven&#123;</span><br><span class="line">        url &quot;http://192.168.18.33:8081/repository/android/&quot;</span><br><span class="line">        credentials &#123;</span><br><span class="line">            username &quot;xxxxxx&quot;</span><br><span class="line">            password &quot;xxxxxx&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>implementation “com.test:libtest:1.0.0”</p>
+</blockquote>
+<h3 id="3-问题总结"><a href="#3-问题总结" class="headerlink" title="3. 问题总结"></a>3. 问题总结</h3><ol>
+<li>我在上传组件的时候遇到传不上去的问题，最后是将.gradle-&gt;gradle.properties文件中的地址注释掉就好了。</li>
+<li>在使用组件的时候出现401返回错误，最后是由于没有写credentials用户名和密码导致。</li>
+</ol>
 ]]></content>
       <categories>
         <category>Android</category>
@@ -418,36 +421,33 @@ make: *** [out/host/linux-x86/sdk/android-sdk_eng.d_linux-x86.zip] Error 44
       </tags>
   </entry>
   <entry>
-    <title>&#39;将Android庫上傳到私服&#39;</title>
-    <url>/2019/12/14/Android/%E5%B0%87Android%E5%BA%AB%E4%B8%8A%E5%82%B3%E5%88%B0%E7%A7%81%E6%9C%8D/</url>
-    <content><![CDATA[<p>使用nexus搭建自己的私服，过程记录一下。</p>
+    <title>React相关笔记</title>
+    <url>/2019/04/27/React/React%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>整理React开发，笔记</p>
 <span id="more"></span>
-<p>nexus官方文档地址：<a href="https://help.sonatype.com/docs">点击这里</a>，这里面有详细的教程。</p>
-<blockquote>
-<p>nexus3下载地址：<br><a href="https://download.sonatype.com/nexus/3/latest-unix.tar.gz">Unix</a>，<br><a href="https://download.sonatype.com/nexus/3/latest-win64.zip">Windows</a><br><a href="https://download.sonatype.com/nexus/3/latest-mac.tgz">MaxOS</a></p>
+<h1 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h1><blockquote>
+<p>什么是JSX语法，就是符合xml规范的JS语法</p>
 </blockquote>
-<h3 id="1-Android发布组件"><a href="#1-Android发布组件" class="headerlink" title="1. Android发布组件"></a>1. Android发布组件</h3><p>按照教程安装好后，进入nexus系统，<br>并创建resipotory,复制地址。</p>
-<blockquote>
-<p><a href="http://192.168.18.33:8081/repository/android/">http://192.168.18.33:8081/repository/android/</a></p>
-</blockquote>
-<p>打开需要上传到仓库的android module中的build.gradle文件写入以下代码,<br>pom对应的属性在nexus中可以看到。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apply plugin: &#x27;maven&#x27;</span><br><span class="line"></span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            repository(url: &#x27;http://192.168.18.33:8081/repository/android/&#x27;) &#123;</span><br><span class="line">                authentication(userName: &quot;xxxxxxx&quot;, password: &quot;xxxxxxx&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            pom.project &#123;</span><br><span class="line">                version &quot;1.0.0&quot;</span><br><span class="line">                artifactId &quot;libtest&quot;</span><br><span class="line">                groupId &quot;com.test&quot;</span><br><span class="line">                packaging &quot;aar&quot;</span><br><span class="line">                description &quot;test&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenLocal()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-使用组件"><a href="#2-使用组件" class="headerlink" title="2. 使用组件"></a>2. 使用组件</h3><p>在客户端的根项目build.gradle文件中的allrepositories中写入私服的maven地址,<br>一定要写用户名密码！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">maven&#123;</span><br><span class="line">        url &quot;http://192.168.18.33:8081/repository/android/&quot;</span><br><span class="line">        credentials &#123;</span><br><span class="line">            username &quot;xxxxxx&quot;</span><br><span class="line">            password &quot;xxxxxx&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>implementation “com.test:libtest:1.0.0”</p>
-</blockquote>
-<h3 id="3-问题总结"><a href="#3-问题总结" class="headerlink" title="3. 问题总结"></a>3. 问题总结</h3><ol>
-<li>我在上传组件的时候遇到传不上去的问题，最后是将.gradle-&gt;gradle.properties文件中的地址注释掉就好了。</li>
-<li>在使用组件的时候出现401返回错误，最后是由于没有写credentials用户名和密码导致。</li>
-</ol>
+<h2 id="如何启动jsx语法"><a href="#如何启动jsx语法" class="headerlink" title="如何启动jsx语法"></a>如何启动jsx语法</h2><ul>
+<li>安装babel插件（具体查看github）<ul>
+<li>运行<code>npm i babel-core babel-loader babel-plugin-transform-runtime -D</code></li>
+<li>运行<code>npm i babel-preset-env babel-preset-stage-0 -D</code></li>
+</ul>
+</li>
+<li>安装能够识别jsx语法的包 <code>babel-preset-react</code><ul>
+<li>运行<code>npm i babel-preset-react -D</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h1><h3 id="用到的命令"><a href="#用到的命令" class="headerlink" title="用到的命令"></a>用到的命令</h3><ul>
+<li>弹出调试窗口 <code>adb shell input keyevent 82</code></li>
+</ul>
 ]]></content>
       <categories>
-        <category>Android</category>
+        <category>前端</category>
       </categories>
       <tags>
-        <tag>Android</tag>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
